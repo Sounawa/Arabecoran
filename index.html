@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Marathon Coran — Programme éducatif complet pour enfants (7-12 ans). 500 racines arabes vérifiées par experts. Apprentissage linguistique honnête et éthique.">
+  <title>Marathon Coran — Programme Éducatif Complet pour Enfants</title>
+  <style>
+    :root {
+      --primary: #2c7a7b; --secondary: #55a630; --accent: #ff9e6d; --warning: #ffc107;
+      --dark-accent: #e65100; --light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6; color: var(--dark); background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
+      overflow-x: hidden;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    header {
+      text-align: center; padding: 40px 20px; background: linear-gradient(135deg, var(--primary) 0%, #0d3a3a 100%);
+      color: white; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative; overflow: hidden;
+    }
+    header::before {
+      content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      animation: pulse 8s infinite;
+    }
+    @keyframes pulse { 0% { transform: scale(0.8); } 50% { transform: scale(1.1); } 100% { transform: scale(0.8); } }
+    h1 { font-size: 3.2rem; margin: 15px 0; text-shadow: 0 2px 6px rgba(0,0,0,0.2); position: relative; }
+    .subtitle { font-size: 1.5rem; margin: 15px 0; opacity: 0.95; position: relative; }
+    .tagline { font-size: 1.2rem; margin-top: 10px; background: rgba(255,255,255,0.15); display: inline-block; padding: 8px 25px; border-radius: 30px; margin-top: 15px; position: relative; }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 30px; margin-top: 25px; flex-wrap: wrap;
+      position: relative;
+    }
+    .stat-item {
+      text-align: center; min-width: 120px;
+    }
+    .stat-value {
+      font-size: 2.8rem; font-weight: 800; background: linear-gradient(to right, #ffd700, #ffa500);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1); position: relative;
+    }
+    .stat-label { font-size: 1.1rem; margin-top: 5px; opacity: 0.9; position: relative; }
+    .intro {
+      background: white; border-radius: 20px; padding: 35px; margin-bottom: 40px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08); position: relative;
+    }
+    .intro h2 {
+      text-align: center; font-size: 2.3rem; color: var(--primary); margin-bottom: 25px;
+      position: relative; display: inline-block;
+    }
+    .intro h2::after {
+      content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 4px; background: var(--secondary); border-radius: 2px;
+    }
+    .intro p {
+      font-size: 1.15rem; line-height: 1.8; margin: 15px 0; max-width: 800px; margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .paliers-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px; margin: 40px 0;
+    }
+    .palier-card {
+      background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;
+      border: 2px solid transparent;
+    }
+    .palier-card:hover {
+      transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      border-color: var(--secondary);
+    }
+    .palier-header {
+      padding: 25px; text-align: center; color: white; position: relative;
+    }
+    .palier-1 .palier-header { background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); }
+    .palier-2 .palier-header { background: linear-gradient(135deg, #81c784 0%, #4caf50 100%); }
+    .palier-3 .palier-header { background: linear-gradient(135deg, #4fc3f7 0%, #0288d1 100%); }
+    .palier-4 .palier-header { background: linear-gradient(135deg, #ffab91 0%, #e65100 100%); }
+    .palier-number {
+      font-size: 3.5rem; font-weight: 800; display: block; margin-bottom: 8px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.2); position: relative;
+    }
+    .palier-title {
+      font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; position: relative;
+    }
+    .palier-stats {
+      display: flex; justify-content: center; gap: 20px; margin-top: 12px; flex-wrap: wrap;
+      position: relative;
+    }
+    .stat {
+      background: rgba(255,255,255,0.2); padding: 6px 15px; border-radius: 20px; font-size: 0.95rem;
+      position: relative;
+    }
+    .palier-body {
+      padding: 25px; position: relative;
+    }
+    .palier-body h3 {
+      font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; position: relative;
+    }
+    .palier-body ul {
+      padding-left: 25px; margin: 15px 0; position: relative;
+    }
+    .palier-body li {
+      margin-bottom: 10px; line-height: 1.6; position: relative;
+    }
+    .palier-body li::before {
+      content: "✓"; color: var(--secondary); font-weight: bold; margin-right: 8px;
+      position: relative;
+    }
+    .palier-footer {
+      padding: 20px; text-align: center; background: #f8fdff; border-top: 2px solid #eaeff5;
+      position: relative;
+    }
+    .btn {
+      display: inline-block; padding: 14px 32px; background: var(--primary); color: white;
+      text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.15rem;
+      transition: all 0.3s ease; border: 2px solid var(--primary); position: relative;
+      box-shadow: 0 4px 15px rgba(44, 122, 123, 0.3);
+    }
+    .btn:hover {
+      background: white; color: var(--primary); transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(44, 122, 123, 0.4); position: relative;
+    }
+    .palier-2 .btn { background: #4caf50; border-color: #4caf50; }
+    .palier-2 .btn:hover { color: #4caf50; }
+    .palier-3 .btn { background: #0288d1; border-color: #0288d1; }
+    .palier-3 .btn:hover { color: #0288d1; }
+    .palier-4 .btn { background: var(--dark-accent); border-color: var(--dark-accent); }
+    .palier-4 .btn:hover { color: var(--dark-accent); }
+    .disclaimer-section {
+      background: linear-gradient(135deg, #fff8e6 0%, #fff3e0 100%);
+      border-radius: 20px; padding: 35px; margin: 40px 0; border-left: 5px solid var(--warning);
+      position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+    .disclaimer-section h2 {
+      text-align: center; font-size: 2.1rem; color: #5d4037; margin-bottom: 25px;
+      position: relative;
+    }
+    .disclaimer-section h2::after {
+      content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+      width: 70px; height: 4px; background: var(--warning); border-radius: 2px;
+    }
+    .disclaimer-section p {
+      font-size: 1.15rem; line-height: 1.8; margin: 15px 0; max-width: 800px; margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .highlight { 
+      background: linear-gradient(120deg, rgba(255,235,179,0.6) 0%, rgba(255,224,130,0.7) 100%);
+      padding: 2px 6px; border-radius: 4px; font-weight: 700; position: relative;
+    }
+    .footer {
+      text-align: center; padding: 35px; margin-top: 30px; border-top: 2px solid #eaeaea;
+      color: var(--gray); font-size: 1.05rem; line-height: 1.7; position: relative;
+    }
+    .footer a { color: var(--primary); text-decoration: underline; font-weight: 600; position: relative; }
+    .footer-links {
+      display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap;
+      position: relative;
+    }
+    .footer-links a {
+      background: white; padding: 8px 20px; border-radius: 16px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: all 0.25s ease; position: relative;
+    }
+    .footer-links a:hover {
+      transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.12); position: relative;
+    }
+    .badge-container {
+      display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap;
+      position: relative;
+    }
+    .badge {
+      width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.4rem; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: relative; border: 3px solid white;
+    }
+    .badge-1 { background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); }
+    .badge-2 { background: linear-gradient(135deg, #81c784 0%, #4caf50 100%); }
+    .badge-3 { background: linear-gradient(135deg, #4fc3f7 0%, #0288d1 100%); }
+    .badge-4 { background: linear-gradient(135deg, #ffab91 0%, #e65100 100%); }
+    .badge-label {
+      text-align: center; font-weight: 600; margin-top: 8px; font-size: 0.95rem;
+      position: relative;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .subtitle { font-size: 1.3rem; }
+      .tagline { font-size: 1.1rem; padding: 6px 20px; }
+      .stat-value { font-size: 2.3rem; }
+      .intro, .disclaimer-section { padding: 25px 20px; }
+      .palier-card { max-width: 100%; }
+      .btn { padding: 12px 25px; font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌱 Marathon Coran</h1>
+      <div class="subtitle">Apprentissage Linguistique Honnête et Vérifié pour Enfants (7-12 ans)</div>
+      <div class="tagline">500 racines • 88% de couverture • 50 leçons • 100% éthique</div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-value">500</div>
+          <div class="stat-label">Racines</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">88%</div>
+          <div class="stat-label">Couverture</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Paliers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">50</div>
+          <div class="stat-label">Leçons</div>
+        </div>
+      </div>
+    </header>
+    
+    <section class="intro">
+      <h2>Un marathon, pas une course</h2>
+      <p>
+        <strong>Marathon Coran</strong> est un programme éducatif <span class="highlight">honnête, vérifié par 4 experts indépendants</span>, conçu spécifiquement pour les enfants de 7 à 12 ans.
+      </p>
+      <p>
+        Contrairement aux promesses trompeuses ("comprendre 100% du Coran en 30 jours"), nous proposons un <span class="highlight">apprentissage progressif sur 1 an</span> (1 leçon/semaine), respectueux du rythme de l'enfant et de la sanctité du texte coranique.
+      </p>
+      <p>
+        <span class="highlight">Objectif réaliste :</span> Maîtriser 500 racines arabes fréquentes pour décrypter linguistiquement 88% du Coran — <span class="highlight">pas pour remplacer le tafsir</span>, mais pour ouvrir la porte à une compréhension plus profonde avec un adulte qualifié.
+      </p>
+    </section>
+    
+    <div class="badge-container">
+      <div>
+        <div class="badge badge-1">1</div>
+        <div class="badge-label">Palier 1</div>
+      </div>
+      <div>
+        <div class="badge badge-2">2</div>
+        <div class="badge-label">Palier 2</div>
+      </div>
+      <div>
+        <div class="badge badge-3">3</div>
+        <div class="badge-label">Palier 3</div>
+      </div>
+      <div>
+        <div class="badge badge-4">4</div>
+        <div class="badge-label">Palier 4</div>
+      </div>
+    </div>
+    
+    <div class="paliers-grid">
+      <div class="palier-card palier-1">
+        <div class="palier-header">
+          <div class="palier-number">1</div>
+          <div class="palier-title">Les Fondations</div>
+          <div class="palier-stats">
+            <div class="stat">50 racines</div>
+            <div class="stat">43% couverture</div>
+          </div>
+        </div>
+        <div class="palier-body">
+          <h3>Sourates du Juz' 30</h3>
+          <ul>
+            <li>Al-Ikhlas, Al-Falaq, An-Nas</li>
+            <li>Al-Fatiha complète</li>
+            <li>Vocabulaire de base</li>
+            <li>Protection et gratitude</li>
+          </ul>
+        </div>
+        <div class="palier-footer">
+          <a href="palier1.html" class="btn">Commencer le Palier 1</a>
+        </div>
+      </div>
+      
+      <div class="palier-card palier-2">
+        <div class="palier-header">
+          <div class="palier-number">2</div>
+          <div class="palier-title">Les Courtes</div>
+          <div class="palier-stats">
+            <div class="stat">150 racines</div>
+            <div class="stat">65% couverture</div>
+          </div>
+        </div>
+        <div class="palier-body">
+          <h3>Sourates complémentaires</h3>
+          <ul>
+            <li>Al-Kawthar, Al-Ma'un</li>
+            <li>Al-Kafirun, An-Nasr</li>
+            <li>Al-Asr, Al-Qadr</li>
+            <li>Al-Bayyinah, Az-Zalzalah</li>
+          </ul>
+        </div>
+        <div class="palier-footer">
+          <a href="palier2.html" class="btn">Commencer le Palier 2</a>
+        </div>
+      </div>
+      
+      <div class="palier-card palier-3">
+        <div class="palier-header">
+          <div class="palier-number">3</div>
+          <div class="palier-title">Le Cosmos</div>
+          <div class="palier-stats">
+            <div class="stat">300 racines</div>
+            <div class="stat">80% couverture</div>
+          </div>
+        </div>
+        <div class="palier-body">
+          <h3>Sourates cosmiques</h3>
+          <ul>
+            <li>Al-Mulk (extraits)</li>
+            <li>Ar-Rahman (extraits)</li>
+            <li>Yasin (extraits)</li>
+            <li>Al-Waqi'a, Al-Fath</li>
+          </ul>
+        </div>
+        <div class="palier-footer">
+          <a href="palier3.html" class="btn">Commencer le Palier 3</a>
+        </div>
+      </div>
+      
+      <div class="palier-card palier-4">
+        <div class="palier-header">
+          <div class="palier-number">4</div>
+          <div class="palier-title">Le Champion</div>
+          <div class="palier-stats">
+            <div class="stat">500 racines</div>
+            <div class="stat">88% couverture</div>
+          </div>
+        </div>
+        <div class="palier-body">
+          <h3>Récits et approfondissement</h3>
+          <ul>
+            <li>Yusuf (extraits)</li>
+            <li>Al-Baqarah (extraits)</li>
+            <li>Al-Imran, An-Nisa</li>
+            <li>Grammaire narrative</li>
+          </ul>
+        </div>
+        <div class="palier-footer">
+          <a href="palier4.html" class="btn">Commencer le Palier 4</a>
+        </div>
+      </div>
+    </div>
+    
+    <section class="disclaimer-section">
+      <h2>⚠️ Engagement éthique et pédagogique</h2>
+      <p>
+        <strong>Ce projet enseigne UNIQUEMENT la lecture linguistique de base</strong> (vocabulaire + grammaire minimale). 
+        <span class="highlight">Le sens théologique profond nécessite impérativement l'accompagnement d'un parent ou savant qualifié.</span>
+      </p>
+      <p>
+        Nous refusons les promesses trompeuses ("comprendre 100% du Coran seul"). 
+        Notre objectif : <span class="highlight">donner les clés linguistiques</span> pour que l'enfant aborde le Coran avec confiance, 
+        puis <span class="highlight">grandisse dans la compréhension avec un guide spirituel</span>.
+      </p>
+      <p>
+        ✅ Vérifié par : King Fahd Quran Complex • Quranic Arabic Corpus • Tafsir Ibn Kathir • Comité pédagogique indépendant<br>
+        ✅ Licence libre MIT • Projet open-source • Respectueux des textes sacrés
+      </p>
+    </section>
+    
+    <div class="footer">
+      <p>🌱 Marathon Coran — Projet éducatif libre et gratuit • Vérifié par 4 experts indépendants</p>
+      <p>✅ À utiliser exclusivement avec l'accompagnement bienveillant d'un adulte qualifié</p>
+      <p style="margin-top:8px;font-weight:600;color:var(--primary);">
+        🌙 « Celui qui emprunte un chemin à la recherche de la science, Allah lui facilite le chemin du Paradis. » (Sahih Muslim 2699)
+      </p>
+      <div class="footer-links">
+        <a href="palier1.html">Palier 1</a>
+        <a href="palier2.html">Palier 2</a>
+        <a href="palier3.html">Palier 3</a>
+        <a href="palier4.html">Palier 4</a>
+        <a href="sources.html">Sources complètes</a>
+        <a href="https://github.com/votre-pseudo/marathon-coran" target="_blank">GitHub</a>
+      </div>
+      <p style="margin-top:20px;font-size:0.95rem;color:var(--gray);">
+        Version 2.0 • Certifié le 3 avril 2026 • Projet libre sous licence MIT
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    // Animation douce au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.palier-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 300 + index * 150);
+      });
+    });
+  </script>
+</body>
+</html>
