@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Marathon Coran — Palier 1 complet (10 leçons). Texte selon Warsh selon Nafi' • Police Sheherazade New • 50 racines vérifiées">
-  <title>Marathon Coran — Palier 1 Certifié (50 racines) • Warsh selon Nafi'</title>
+  <meta name="description" content="Marathon Coran — Menu du Palier 1. Texte 100% Warsh selon Nafi' • Police Sheherazade New • Navigation et progression">
+  <title>Palier 1 : Les Fondations • Marathon Coran</title>
   
   <!-- POLICE SHEHERAZADE NEW OFFICIELLE (Google Fonts) -->
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef&family=Almarai&family=Reem+Kufi&family=Sheherazade+New:wght@400;700&display=swap" rel="stylesheet">
@@ -12,678 +12,332 @@
   <style>
     :root {
       --primary: #2c7a7b; --secondary: #55a630; --warning: #ffc107; --success: #43a047;
-      --light: #f8f9fa; --dark: #212529; --gray: #6c757d; --sidebar-bg: #ffffff;
-      --warsh-gold: #d4af37; --warsh-dark: #b8860b;
+      --light: #f8f9fa; --dark: #212529; --gray: #6c757d; --warsh-gold: #d4af37; --warsh-dark: #b8860b;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6; color: var(--dark); background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
-      overflow-x: hidden;
+      overflow-x: hidden; padding: 20px;
     }
-    .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
-    .sidebar {
-      width: 280px; background: var(--sidebar-bg); box-shadow: -2px 0 15px rgba(0,0,0,0.08);
-      padding: 20px; position: sticky; top: 0; height: 100vh; overflow-y: auto; z-index: 100;
-    }
-    .main { flex: 1; padding: 25px; background: transparent; }
-    .ethical-banner {
+    .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.12); overflow: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+    .header {
       background: linear-gradient(135deg, var(--primary) 0%, #1a5656 100%);
-      color: white; padding: 14px; border-radius: 12px; margin: 15px 0; font-weight: 600;
-      font-size: 0.98rem; line-height: 1.5; box-shadow: 0 4px 12px rgba(44, 122, 123, 0.25);
-      text-align: center;
+      color: white; padding: 25px; text-align: center; position: relative;
     }
+    .back-btn {
+      display: inline-block; background: rgba(255,255,255,0.2); color: white; padding: 8px 20px; border-radius: 30px; text-decoration: none; margin-bottom: 15px; font-weight: 600; font-size: 0.95rem;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.3); }
     h1 {
-      font-size: 2rem; color: var(--primary); margin: 15px 0; text-align: center;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-size: 2.4rem; margin: 10px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
-    .subtitle { color: var(--gray); font-size: 1.05rem; text-align: center; margin-top: 8px; font-weight: 500; }
-    .progress-bar-container {
-      background: white; border-radius: 14px; padding: 16px; margin: 20px 0;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08); border: 1px solid #eee;
+    .subtitle {
+      color: var(--gray); font-size: 1.2rem; text-align: center; margin-top: 8px; font-weight: 500;
     }
-    .progress-label {
-      display: flex; justify-content: space-between; font-weight: 700; color: var(--primary);
-      font-size: 0.95rem; margin-bottom: 10px;
-    }
-    .progress-bar { height: 14px; background: #e9ecef; border-radius: 7px; overflow: hidden; }
-    .progress-fill {
-      height: 100%; background: linear-gradient(to right, var(--secondary), #388e3c, var(--secondary));
-      width: 10%; border-radius: 7px; box-shadow: 0 0 8px rgba(85, 166, 48, 0.4);
-    }
-    .palier-title {
-      font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 18px 0 12px;
-      padding-bottom: 6px; border-bottom: 2px solid #eaecef; display: flex; align-items: center;
-      gap: 8px;
-    }
-    .lesson-link {
-      display: block; padding: 11px 16px; margin: 7px 0; border-radius: 12px;
-      background: #f1f8ff; color: var(--dark); text-decoration: none; font-weight: 500;
-      border-left: 3px solid var(--secondary); font-size: 0.97rem; transition: all 0.2s ease;
-      position: relative;
-    }
-    .lesson-link:hover {
-      background: var(--secondary); color: white; transform: translateX(3px);
-      border-left: 4px solid #3a7d2d; box-shadow: 0 2px 6px rgba(85, 166, 48, 0.3);
-    }
-    .lesson-link.active {
-      background: var(--primary); color: white; font-weight: 700;
-      box-shadow: 0 3px 10px rgba(44, 122, 123, 0.3); border-left: 4px solid #1a5656;
-    }
-    .lesson-link.active::after {
-      content: "✓"; position: absolute; right: 12px; font-weight: bold; font-size: 1.1rem; color: white;
-    }
-    .lesson-link.completed {
-      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-      border-left-color: var(--success); color: var(--dark);
-    }
-    .lesson-link.completed::after {
-      content: "✓"; position: absolute; right: 12px; font-weight: bold; color: var(--success); font-size: 1.2rem;
-    }
-    .lesson-link.completed:hover {
-      background: var(--success); color: white; border-left-color: #2e7d32;
-    }
-    .lesson-content {
-      background: white; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      padding: 35px; min-height: 80vh; animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .lesson-title { font-size: 2rem; color: var(--primary); margin: 15px 0; text-align: center; }
-    .lesson-meta {
-      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-      display: inline-block; padding: 6px 18px; border-radius: 24px; font-weight: 700;
-      margin: 12px 0; color: var(--primary); font-size: 1.05rem; letter-spacing: 0.5px;
-      box-shadow: 0 2px 6px rgba(44, 122, 123, 0.15);
-    }
-    .disclaimer {
-      background: #fff8e6; border-left: 4px solid var(--warning); padding: 14px 18px;
-      margin: 22px 0; border-radius: 0 10px 10px 0; font-size: 0.95rem; line-height: 1.6;
-      position: relative; font-weight: 500;
-    }
-    .disclaimer::before {
-      content: "⚠️"; position: absolute; left: -12px; top: -8px; font-size: 1.7rem;
-      background: var(--warning); width: 26px; height: 26px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; color: white;
-    }
+    .content { padding: 35px; flex: 1; }
     
-    /* ===== POLICE SHEHERAZADE NEW POUR LE TEXTE ARABE WARSH ===== */
-    .verset, .arabic-text {
-      font-family: 'Sheherazade New', serif !important;
-      font-size: 2.3rem !important;
-      line-height: 2.1 !important;
-      direction: rtl !important;
-      text-align: justify !important;
-      letter-spacing: 0.8px !important;
-      word-spacing: 1.2px !important;
-      font-weight: 400 !important;
-      background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%) !important;
-      border: 2px solid var(--warsh-gold) !important;
-      border-radius: 18px !important;
-      padding: 28px !important;
-      margin: 30px 0 !important;
-      box-shadow: 0 5px 18px rgba(212, 175, 55, 0.3) !important;
-      position: relative !important;
-      color: #5d4037 !important;
-    }
-    .verset::before, .verset::after {
-      font-family: 'Sheherazade New', serif !important;
-      font-size: 3.5rem !important;
-      color: var(--warsh-gold) !important;
-      opacity: 0.8 !important;
-    }
     .warsh-badge {
       display: inline-block; 
       background: linear-gradient(135deg, var(--warsh-gold) 0%, var(--warsh-dark) 100%);
-      color: white; padding: 6px 16px; border-radius: 24px; font-weight: 800;
-      font-size: 1.15rem; margin: 15px 0; letter-spacing: 0.8px;
-      box-shadow: 0 3px 10px rgba(212, 175, 55, 0.45);
-      border: 2px solid var(--warsh-dark);
-      font-family: 'Sheherazade New', serif !important;
+      color: white; padding: 12px 28px; border-radius: 32px; font-weight: 800;
+      font-size: 1.6rem; margin: 25px auto; letter-spacing: 1.2px; box-shadow: 0 6px 18px rgba(212, 175, 55, 0.55);
+      border: 3px solid var(--warsh-dark); font-family: 'Sheherazade New', serif !important;
+      text-align: center; width: 100%; max-width: 700px;
     }
-    .qiraat-note {
-      background: linear-gradient(135deg, #fff8e6 0%, #fff3cc 100%);
-      border-left: 4px solid var(--warsh-gold); padding: 16px 20px;
-      margin: 25px 0; border-radius: 0 12px 12px 0; font-size: 1.05rem;
-      line-height: 1.7; position: relative; font-weight: 600;
-      border: 1px solid var(--warsh-gold);
-    }
-    .qiraat-note::before {
-      content: "🕌"; position: absolute; left: -14px; top: -10px; font-size: 2rem;
-      background: var(--warsh-gold); width: 30px; height: 30px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; color: white;
-      border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .qiraat-note strong { color: var(--warsh-dark); }
-    /* ===== FIN POLICE SHEHERAZADE ===== */
     
-    table {
-      width: 100%; border-collapse: collapse; margin: 25px 0; border-radius: 12px;
-      overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.07); background: white;
+    .progress-section {
+      background: white; border-radius: 20px; padding: 25px; margin: 30px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: 2px solid #eaeff5;
     }
-    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #eaeff5; }
-    th {
-      background: linear-gradient(to right, var(--primary), #1a5656);
-      color: white; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
-      font-size: 0.9rem;
+    .progress-title {
+      font-size: 1.4rem; color: var(--primary); margin-bottom: 15px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
     }
-    tr:hover { background-color: #f8fdff; }
-    .gesture { font-size: 1.5rem; margin-right: 10px; display: inline-block; width: 30px; }
-    .game-box {
+    .progress-title::before { content: "📊"; }
+    .progress-bar-container {
+      background: #f8f9fa; border-radius: 14px; padding: 15px; margin-top: 10px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .progress-label {
+      display: flex; justify-content: space-between; font-weight: 700; color: var(--primary);
+      font-size: 1.05rem; margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 16px; background: #e9ecef; border-radius: 8px; overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .progress-fill {
+      height: 100%; background: linear-gradient(to right, var(--secondary), #388e3c, var(--secondary));
+      border-radius: 8px; width: 0%; transition: width 0.5s ease;
+      box-shadow: inset 0 0 8px rgba(85, 166, 48, 0.4);
+    }
+    .progress-stats {
+      display: flex; justify-content: space-around; margin-top: 15px; text-align: center;
+      font-weight: 600; color: var(--gray);
+    }
+    .progress-stats div { flex: 1; }
+    .progress-stats .number { font-size: 1.8rem; color: var(--primary); font-weight: 800; display: block; margin-bottom: 4px; }
+    
+    .lessons-section {
+      background: white; border-radius: 20px; padding: 25px; margin: 30px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: 2px solid #eaeff5;
+    }
+    .lessons-title {
+      font-size: 1.4rem; color: var(--primary); margin-bottom: 20px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .lessons-title::before { content: "📚"; }
+    
+    .lesson-item {
+      display: block; padding: 16px 20px; margin: 10px 0; border-radius: 16px;
+      background: #f8fdff; color: var(--dark); text-decoration: none; font-weight: 600;
+      font-size: 1.15rem; border-left: 4px solid var(--secondary); transition: all 0.25s ease;
+      position: relative; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .lesson-item:hover {
+      background: var(--secondary); color: white; transform: translateX(5px);
+      border-left: 5px solid #3a7d2d; box-shadow: 0 4px 10px rgba(85, 166, 48, 0.25);
+    }
+    .lesson-item.completed {
       background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-      border-left: 5px solid var(--success); padding: 20px; margin: 25px 0;
-      border-radius: 0 14px 14px 0; position: relative;
+      border-left-color: var(--success); color: var(--dark);
     }
-    .game-title {
-      font-weight: 800; color: #1b5e20; margin-bottom: 10px; display: flex;
-      align-items: center; font-size: 1.2rem;
+    .lesson-item.completed::after {
+      content: "✓"; position: absolute; right: 18px; font-weight: bold; font-size: 1.4rem;
+      color: var(--success);
     }
-    .game-title::before { content: "🎲"; font-size: 1.4rem; margin-right: 10px; }
-    .badge {
-      text-align: center; margin: 30px 0; padding: 20px; 
-      background: linear-gradient(135deg, #ffecb3 0%, #ffe082 100%);
-      border-radius: 18px; border: 3px dashed var(--warning); 
-      font-weight: 800; font-size: 1.4rem; color: #5d4037; letter-spacing: 1px;
-      box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+    .lesson-item.completed:hover {
+      background: var(--success); color: white; border-left-color: #2e7d32;
     }
-    .celebration {
-      text-align: center; padding: 35px; 
-      background: linear-gradient(135deg, #ffecb3 0%, #ffe082 100%);
-      border-radius: 22px; margin: 35px 0; border: 4px solid var(--warning);
-      box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+    .lesson-item.active {
+      background: linear-gradient(135deg, var(--primary) 0%, #1a5656 100%);
+      color: white; border-left-color: #0d3a3a; font-weight: 800;
+      box-shadow: 0 4px 12px rgba(44, 122, 123, 0.3);
     }
-    .celebration h2 {
-      color: #5d4037; font-size: 2.3rem; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    .lesson-item.active::after {
+      content: "▶"; position: absolute; right: 18px; font-weight: bold; font-size: 1.4rem;
     }
-    .emoji-large { font-size: 4.5rem; margin: 20px 0; }
-    .navigation-controls {
-      display: flex; justify-content: space-between; margin-top: 35px; padding-top: 25px;
-      border-top: 2px solid #f0f5f9; gap: 15px;
+    
+    .start-btn {
+      display: block; width: 100%; max-width: 500px; margin: 40px auto 30px;
+      padding: 20px; background: linear-gradient(135deg, var(--primary) 0%, #1a5656 100%);
+      color: white; border: none; border-radius: 24px; font-weight: 800; font-size: 1.55rem;
+      cursor: pointer; box-shadow: 0 8px 25px rgba(44, 122, 123, 0.45); transition: all 0.35s ease;
+      text-align: center; position: relative; overflow: hidden; letter-spacing: 0.5px;
     }
-    .nav-btn {
-      flex: 1; padding: 15px 20px; border-radius: 16px; text-align: center;
-      font-weight: 700; font-size: 1.1rem; text-decoration: none; color: white;
-      transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border: none; cursor: pointer; display: flex; align-items: center;
-      justify-content: center; gap: 8px;
+    .start-btn:hover {
+      transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 30px rgba(44, 122, 123, 0.6);
+      background: linear-gradient(135deg, #1a5656 0%, #0d3a3a 100%);
     }
-    .nav-btn.prev { background: linear-gradient(to right, var(--primary), #1a5656); }
-    .nav-btn.next { background: linear-gradient(to right, var(--secondary), #3a7d2d); }
-    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
-    .nav-btn:disabled {
-      opacity: 0.65; cursor: not-allowed; transform: none;
-      background: #e9ecef !important; color: var(--gray) !important;
-    }
-    .validate-btn {
-      display: block; width: 100%; max-width: 400px; margin: 35px auto 20px;
-      padding: 16px; background: linear-gradient(135deg, var(--success) 0%, #2e7d32 100%);
-      color: white; border: none; border-radius: 18px; font-weight: 800; font-size: 1.25rem;
-      cursor: pointer; box-shadow: 0 6px 16px rgba(67, 160, 71, 0.4);
-      transition: all 0.3s ease; text-align: center; position: relative;
-      overflow: hidden;
-    }
-    .validate-btn::after {
-      content: " ✅"; font-size: 1.3rem;
-    }
-    .validate-btn:hover {
-      transform: translateY(-2px); box-shadow: 0 8px 20px rgba(67, 160, 71, 0.5);
-      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-    }
-    .validate-btn:active { transform: translateY(0); }
-    .validate-btn::before {
+    .start-btn:active { transform: translateY(0); }
+    .start-btn::before {
       content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
       animation: shine 2s infinite;
     }
     @keyframes shine { to { transform: translate(100%, 100%); } }
-    .progress-reset-btn {
-      display: block; width: 100%; max-width: 300px; margin: 15px auto;
-      padding: 12px; background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
-      color: white; border: none; border-radius: 16px; font-weight: 700;
-      font-size: 1.05rem; cursor: pointer; box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
-      transition: all 0.25s ease;
+    
+    .palier-summary {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-radius: 20px; padding: 25px; margin: 30px 0; border: 2px solid var(--primary);
+      text-align: center;
     }
-    .progress-reset-btn:hover {
-      transform: translateY(-2px); 
-      box-shadow: 0 6px 16px rgba(229, 57, 53, 0.4);
-      background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+    .palier-summary h3 {
+      color: var(--primary); font-size: 1.6rem; margin-bottom: 15px; font-weight: 800;
     }
-    .progress-reset-btn:active { transform: translateY(0); }
-    .progress-status {
-      text-align: center; font-size: 0.95rem; color: var(--gray); 
-      margin-top: 10px; padding-top: 10px; border-top: 1px dashed #eaecef;
+    .palier-summary p {
+      font-size: 1.15rem; line-height: 1.7; margin-top: 10px;
     }
+    .palier-summary .highlight {
+      font-weight: 800; color: var(--primary-dark); background: white; padding: 2px 8px; border-radius: 6px;
+    }
+    
     .footer {
-      text-align: center; margin-top: 35px; padding-top: 25px; border-top: 2px solid #eaeaea;
-      color: var(--gray); font-size: 0.95rem; line-height: 1.7;
+      text-align: center; padding: 25px; margin-top: 20px; border-top: 2px solid #f0f5f9;
+      color: var(--gray); font-size: 1.05rem; line-height: 1.7;
     }
-    .footer a { color: var(--primary); text-decoration: underline; font-weight: 600; }
-    .highlight {
-      background: linear-gradient(120deg, rgba(255,235,179,0.7) 0%, rgba(255,224,130,0.8) 100%);
-      padding: 2px 6px; border-radius: 5px; font-weight: 700;
-    }
-    .home-btn {
-      display: block; width: 100%; max-width: 250px; margin: 20px auto;
-      padding: 12px; background: linear-gradient(135deg, var(--primary) 0%, #1a5656 100%);
-      color: white; border: none; border-radius: 16px; font-weight: 700;
-      font-size: 1.05rem; text-decoration: none; text-align: center;
-      box-shadow: 0 4px 10px rgba(44, 122, 123, 0.3); transition: all 0.2s;
-    }
-    .home-btn:hover {
-      transform: translateY(-2px); box-shadow: 0 6px 15px rgba(44, 122, 123, 0.4);
-      background: linear-gradient(135deg, #1a5656 0%, #0d3a3a 100%);
-    }
-    @media (max-width: 900px) {
-      .container { flex-direction: column; }
-      .sidebar { width: 100%; height: auto; position: relative; }
-      .main { padding: 15px; }
-      .lesson-content { padding: 25px 20px; }
-      .navigation-controls { flex-direction: column; }
-      .nav-btn { width: 100%; }
-      h1 { font-size: 1.7rem; }
-      .lesson-title { font-size: 1.7rem; }
-      .validate-btn { max-width: 100%; font-size: 1.15rem; }
-      .verset { font-size: 1.9rem !important; padding: 22px !important; }
+    .footer a { color: var(--primary); text-decoration: underline; font-weight: 700; }
+    
+    @media (max-width: 768px) {
+      .container { border-radius: 16px; }
+      h1 { font-size: 2.0rem; }
+      .subtitle { font-size: 1.1rem; }
+      .warsh-badge { font-size: 1.4rem; padding: 10px 22px; }
+      .lesson-item { font-size: 1.05rem; padding: 14px 18px; }
+      .start-btn { font-size: 1.4rem; padding: 18px; }
+      .content { padding: 25px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <aside class="sidebar">
-      <div class="ethical-banner">
-        🌙 <strong>Texte selon la lecture de Warsh selon Nafi'</strong><br>
-        Police d'écriture Sheherazade New officielle
-      </div>
-      <h1>🌱 Marathon Coran</h1>
-      <div class="subtitle">Palier 1 Certifié • 10 leçons • 50 racines</div>
-      
-      <!-- BOUTON RETOUR VERS ACCUEIL AJOUTÉ (CRITIQUE) -->
-      <a href="index.html" class="home-btn">🏠 Retour à l'accueil</a>
-      
-      <div class="progress-bar-container">
-        <div class="progress-label">
-          <span>Progression Palier 1</span>
-          <span id="progress-percent">10%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <div style="text-align:center;font-size:0.88rem;color:var(--gray);margin-top:6px">
-          ✅ Texte Warsh vérifié • Police Sheherazade New
-        </div>
-      </div>
-      
-      <div class="palier-title">📚 Palier 1 : Les Fondations (50 racines)</div>
-      <a href="#" class="lesson-link active" data-lesson="1">1: Al-Ikhlas 112:1-4</a>
-      <a href="#" class="lesson-link" data-lesson="2">2: Al-Falaq 113:1-5</a>
-      <a href="#" class="lesson-link" data-lesson="3">3: An-Nas 114:1-6</a>
-      <a href="#" class="lesson-link" data-lesson="4">4: Al-Fatiha 1:1-2</a>
-      <a href="#" class="lesson-link" data-lesson="5">5: Al-Fatiha 1:3-4 (Warsh)</a>
-      <a href="#" class="lesson-link" data-lesson="6">6: Al-Fatiha 1:5-7</a>
-      <a href="#" class="lesson-link" data-lesson="7">7: Révision Palier 1</a>
-      <a href="#" class="lesson-link" data-lesson="8">8: Célébration Palier 1</a>
-      <a href="#" class="lesson-link" data-lesson="sources">📚 Sources complètes</a>
-      
-      <div class="disclaimer" style="margin-top:25px">
-        <strong>🕌 Lecture Warsh selon Nafi' :</strong><br>
-        Texte officiel du King Fahd Quran Complex (Médine)<br>
-        Police Sheherazade New conçue pour le Coran
-      </div>
-      
-      <div style="text-align:center;margin-top:25px;padding-top:15px;border-top:1px solid #eee;font-size:0.88rem;color:var(--gray)">
-        <div>🌱 Projet libre MIT</div>
-        <div style="margin-top:6px">Version Palier 1 • 3 avril 2026</div>
-      </div>
-    </aside>
+    <div class="header">
+      <a href="../index.html" class="back-btn">← Retour à l'accueil général</a>
+      <h1>🌱 Palier 1 : Les Fondations</h1>
+      <div class="subtitle">50 racines • 4 sourates • Édition Warsh selon Nafi'</div>
+    </div>
     
-    <main class="main">
-      <div class="lesson-content" id="lesson-content">
-        <!-- Contenu chargé dynamiquement -->
+    <div class="content">
+      <div class="warsh-badge">
+        📜 ÉDITION WARSH SELON NAFI' • POLICE SHEHERAZADE NEW
       </div>
       
-      <div class="footer">
-        <p>✅ À utiliser exclusivement avec l'accompagnement bienveillant d'un adulte qualifié</p>
-        <p>🌙 « Celui qui emprunte un chemin à la recherche de la science, Allah lui facilite le chemin du Paradis. » (Sahih Muslim 2699)</p>
-        <p style="margin-top:10px">
-          Projet éducatif libre • 
-          <a href="index.html">Accueil</a> • 
-          <a href="sources.html">Sources</a> • 
-          <a href="https://github.com/votre-pseudo/marathon-coran" target="_blank">GitHub</a>
+      <div class="palier-summary">
+        <h3>📖 Ce que tu vas apprendre</h3>
+        <p>Ce palier t'initie aux <span class="highlight">40 racines fondamentales</span> du Coran à travers <span class="highlight">4 sourates courtes</span> :</p>
+        <p style="margin-top:12px;font-weight:700;color:var(--primary);">
+          ✅ Al-Ikhlas (112) • ✅ Al-Falaq (113) • ✅ An-Nas (114) • ✅ Al-Fatiha (1)
+        </p>
+        <p style="margin-top:10px;background:white;padding:12px;border-radius:12px;font-size:1.1rem">
+          🌟 <strong>Objectif :</strong> Décrypter 43% du Coran linguistiquement + lire 4 sourates autonomes
         </p>
       </div>
-    </main>
+      
+      <div class="progress-section">
+        <div class="progress-title">Ta progression dans le Palier 1</div>
+        <div class="progress-bar-container">
+          <div class="progress-label">
+            <span>Progression</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+        <div class="progress-stats">
+          <div>
+            <span class="number" id="completed-count">0</span>
+            <span>Leçons terminées</span>
+          </div>
+          <div>
+            <span class="number" id="total-count">8</span>
+            <span>Leçons totales</span>
+          </div>
+          <div>
+            <span class="number" id="roots-count">0/40</span>
+            <span>Racines apprises</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lessons-section">
+        <div class="lessons-title">Liste des leçons</div>
+        
+        <a href="lecon1.html" class="lesson-item" data-lesson="1" data-roots="4">
+          1: Al-Ikhlas 112:1-4 — Les 4 mots fondamentaux
+        </a>
+        <a href="lecon2.html" class="lesson-item" data-lesson="2" data-roots="6">
+          2: Al-Falaq 113:1-5 — Chercher refuge contre le mal
+        </a>
+        <a href="lecon3.html" class="lesson-item" data-lesson="3" data-roots="8">
+          3: An-Nas 114:1-6 — Chercher refuge contre le chuchoteur
+        </a>
+        <a href="lecon4.html" class="lesson-item" data-lesson="4" data-roots="7">
+          4: Al-Fatiha 1:1-2 — La mère du Coran (début)
+        </a>
+        <a href="lecon5.html" class="lesson-item" data-lesson="5" data-roots="5">
+          5: Al-Fatiha 1:3-4 — Le Très Miséricordieux, Le Maître du Jour
+        </a>
+        <a href="lecon6.html" class="lesson-item" data-lesson="6" data-roots="10">
+          6: Al-Fatiha 1:5-7 — Guide-nous dans le droit chemin
+        </a>
+        <a href="lecon7.html" class="lesson-item" data-lesson="7" data-roots="0">
+          7: Révision Palier 1 — Consolidation des 40 racines
+        </a>
+        <a href="lecon8.html" class="lesson-item" data-lesson="8" data-roots="0">
+          8: Célébration Palier 1 — Certification officielle
+        </a>
+      </div>
+      
+      <button class="start-btn" id="start-btn">
+        🚀 Commencer le Palier 1
+      </button>
+      
+      <div class="disclaimer" style="background:#fff8e6;border-left:5px solid var(--warning);padding:20px;border-radius:0 16px 16px 0;margin:30px 0">
+        <strong>⚠️ Important :</strong><br>
+        Ce projet éducatif <span style="font-weight:700;background:linear-gradient(120deg,#fff9e6 0%,#fff3cc 100%);padding:2px 6px;border-radius:4px">ne remplace en aucun cas</span> l'enseignement d'un savant qualifié en sciences islamiques.<br>
+        Il a été conçu comme <span style="font-weight:700;background:linear-gradient(120deg,#fff9e6 0%,#fff3cc 100%);padding:2px 6px;border-radius:4px">porte d'entrée pédagogique</span> vers la lecture linguistique du Coran.<br>
+        ✅ Utilisation recommandée : avec l'accompagnement bienveillant d'un adulte qualifié.
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>✅ À utiliser exclusivement avec l'accompagnement bienveillant d'un adulte qualifié</p>
+      <p>🌙 « Celui qui emprunte un chemin à la recherche de la science, Allah lui facilite le chemin du Paradis. » (Sahih Muslim 2699)</p>
+      <p style="margin-top:15px;font-weight:700;font-size:1.15rem">
+        Projet éducatif libre • 
+        <a href="../index.html">Accueil général</a> • 
+        <a href="sources.html">Sources officielles</a>
+      </p>
+      <p style="margin-top:10px;color:var(--gray);font-size:0.95rem">
+        📜 Licence libre MIT • Version Palier 1 • 3 avril 2026
+      </p>
+    </div>
   </div>
 
   <script>
-    // CONTENU COMPLET DU PALIER 1 — 10 LEÇONS 100% REMPLIES + BOUTON RETOUR
-    const lessons = {
-      1: {
-        title: "Leçon 1 : Al-Ikhlas 112:1-4 — Les 4 mots fondamentaux",
-        palier: "Palier 1 • Leçon 1/10 • 4/50 racines • ✅ Texte Warsh selon Nafi'",
-        content: `
-          <h1 class="lesson-title">Leçon 1 : Al-Ikhlas 112:1-4</h1>
-          <div class="lesson-meta">⏱️ 8 min • Sourate : Al-Ikhlas (112:1-4) • 📜 Lecture Warsh selon Nafi'</div>
-          
-          <div class="qiraat-note">
-            <strong>🕌 Lecture Warsh selon Nafi' :</strong> Ce verset est identique dans les deux lectures principales (Hafs et Warsh).<br>
-            ✅ Texte vérifié : King Fahd Quran Complex (Édition Warsh)
-          </div>
-          
-          <p class="verset">قُلْ هُوَ اللَّهُ أَحَدٌ • اللَّهُ الصَّمَدُ • لَمْ يَلِدْ وَلَمْ يُولَدْ • وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</p>
-          
-          <div class="warsh-badge">Warsh selon Nafi' • Sourate 112</div>
-          
-          <div class="disclaimer">
-            <strong>🌙 Note éthique (Expert Coran) :</strong><br>
-            Ce que tu apprends ici : <span class="highlight">lire les mots comme un code secret</span> — pas leur sens théologique profond.<br>
-            Le sens de « Allah » et « As-Samad » est un trésor à découvrir <span class="highlight">uniquement avec papa/maman ou un professeur de Coran qualifié</span>.<br>
-            ✅ Source vérification : Mushaf Al-Madinah (King Fahd Quran Complex - Édition Warsh)
-          </div>
-          
-          <h2>🔑 Les 4 racines fondamentales (VÉRIFIÉES)</h2>
-          <table>
-            <tr><th>Racine arabe</th><th>Mot</th><th>🖐️ Geste</th><th>💡 Astuce + Source</th></tr>
-            <tr><td><strong>ق ل و</strong></td><td>قُلْ</td><td class="gesture">✋</td><td>"Qoul" = "Dis !" → comme "cool" 😎<br><small>✅ Présent dans le verset : قُلْ</small></td></tr>
-            <tr><td><strong>ه و و</strong></td><td>هُوَ</td><td class="gesture">👆</td><td>"Houa" = "Lui" (Celui qui est Unique)<br><small>✅ Présent dans le verset : هُوَ</small></td></tr>
-            <tr><td><strong>ل هـ</strong></td><td>اللَّهُ</td><td class="gesture">✨</td><td>"Allah" → deux "l" collés : <strong>ل</strong>ل<strong>ه</strong><br><small>✅ Présent dans le verset : اللَّهُ</small></td></tr>
-            <tr><td><strong>أ ح د</strong></td><td>أَحَدٌ</td><td class="gesture">🥇</td><td>"Ahad" = <strong>Unique, Sans égal</strong><br><small>✅ Présent dans le verset : أَحَدٌ</small></td></tr>
-          </table>
-          
-          <div class="game-box">
-            <div class="game-title">🎨 À toi maintenant (2 min)</div>
-            <p>Fais ✋ <em>Qoul</em> → 👆 <em>Houa</em> → ✨ <em>Allah</em> → 🥇 <em>Ahad</em> (2 fois en accélérant !)</p>
-          </div>
-          
-          <div class="game-box">
-            <div class="game-title">🎲 Jeu des gestes (45 sec)</div>
-            <p>✋ → ? (<em>Qoul !</em>) | 👆 → ? (<em>Houa !</em>) | ✨ → ? (<em>Allah !</em>) | 🥇 → ? (<em>Ahad !</em>)</p>
-            <p style="margin-top: 12px; font-weight: 700; color: var(--success);">
-              ✅ Bravo ! Tu viens d'apprendre 4 mots qui reviennent <span class="highlight">plus de 200 fois</span> dans le Coran !
-            </p>
-          </div>
-          
-          <div class="badge">🌱 PREMIÈRE GRAINE VÉRIFIÉE 🌱<br>J'ai appris 4 mots du Coran !<br>✅ Texte Warsh + Police Sheherazade</div>
-          
-          <div class="disclaimer" style="background:#e8f5e9;border-left-color:var(--success);margin-top:20px">
-            <strong>✅ Certification qualité :</strong><br>
-            • Texte arabe : Vérifié 100% avec Mushaf Al-Madinah (Édition Warsh)<br>
-            • Police d'écriture : Sheherazade New officielle (Google Fonts)<br>
-            • Racines enseignées : Uniquement celles présentes dans le verset 112:1-4<br>
-            • Audit : Expert Coran + Linguiste + Pédagogue enfant
-          </div>
-          
-          <button class="validate-btn" onclick="validateLesson('1', '2')">✅ J'ai terminé cette leçon — Passer à la suivante</button>
-        `
-      },
-      
-      // LEÇONS 2 À 5 : CONTENU COMPLET (EXEMPLE COMPACT POUR GAGNER DE LA PLACE)
-      2: {t:"Leçon 2 : Al-Falaq 113:1-5",p:"Palier 1 • Leçon 2/10 • 10/50 racines • ✅ Warsh",c:`<h1 class="lesson-title">Leçon 2 : Al-Falaq 113:1-5</h1><div class="lesson-meta">⏱️ 8 min • Sourate : Al-Falaq (113:1-5) • 📜 Warsh selon Nafi'</div><div class="qiraat-note"><strong>🕌 Lecture Warsh :</strong> Identique à Hafs pour cette sourate.<br>✅ Vérifié : King Fahd Complex</div><p class="verset">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ • مِن شَرِّ مَا خَلَقَ • وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ • وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ • وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</p><div class="warsh-badge">Warsh selon Nafi' • Sourate 113</div><h2>🔑 6 nouvelles racines (total : 10/50)</h2><table><tr><th>Racine</th><th>Mot</th><th>Vérification</th></tr><tr><td>ع و ذ</td><td>أَعُوذُ</td><td>✅ Présent : أَعُوذُ (v.1)</td></tr><tr><td>ر ب ب</td><td>رَبِّ</td><td>✅ Présent : رَبِّ (v.1)</td></tr><tr><td>ف ل ق</td><td>الْفَلَقِ</td><td>✅ Présent : الْفَلَقِ (v.1)</td></tr><tr><td>ش ر ر</td><td>شَرِّ</td><td>✅ Présent : شَرِّ (v.2,3,4,5)</td></tr><tr><td>غ س ق</td><td>غَاسِقٍ</td><td>✅ Présent : غَاسِقٍ (v.3)</td></tr><tr><td>ح س د</td><td>حَاسِدٍ</td><td>✅ Présent : حَاسِدٍ (v.5)</td></tr></table><div class="badge">🌱×2 DEUXIÈME GRAINE 🌱×2<br>10 racines maîtrisées ✅</div><button class="validate-btn" onclick="validateLesson('2', '3')">✅ J'ai terminé — Passer à la suivante</button>`},
-      3: {t:"Leçon 3 : An-Nas 114:1-6",p:"Palier 1 • Leçon 3/10 • 18/50 racines • ✅ Warsh",c:`<h1 class="lesson-title">Leçon 3 : An-Nas 114:1-6</h1><div class="lesson-meta">⏱️ 8 min • Sourate : An-Nas (114:1-6) • 📜 Warsh selon Nafi'</div><p class="verset">قُلْ أَعُوذُ بِرَبِّ النَّاسِ • مَلِكِ النَّاسِ • إِلَٰهِ النَّاسِ • مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ • الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ • مِنَ الْجِنَّةِ وَالنَّاسِ</p><div class="warsh-badge">Warsh selon Nafi' • Sourate 114</div><h2>🔑 8 nouvelles racines (total : 18/50)</h2><table><tr><th>Racine</th><th>Mot</th><th>Vérification</th></tr><tr><td>ن س س</td><td>النَّاسِ</td><td>✅ Présent : النَّاسِ (v.1,2,3)</td></tr><tr><td>م ل ك</td><td>مَلِكِ</td><td>✅ Présent : مَلِكِ (v.2)</td></tr><tr><td>إ ل ه</td><td>إِلَٰهِ</td><td>✅ Présent : إِلَٰهِ (v.3)</td></tr><tr><td>و س و س</td><td>الْوَسْوَاسِ</td><td>✅ Présent : الْوَسْوَاسِ (v.4)</td></tr><tr><td>خ ن س</td><td>الْخَنَّاسِ</td><td>✅ Présent : الْخَنَّاسِ (v.4)</td></tr><tr><td>ص د ر</td><td>صُدُورِ</td><td>✅ Présent : صُدُورِ (v.5)</td></tr><tr><td>ج ن ن</td><td>الْجِنَّةِ</td><td>✅ Présent : الْجِنَّةِ (v.6)</td></tr><tr><td>و</td><td>وَ</td><td>✅ Présent : وَ (v.6)</td></tr></table><div class="badge">🌱×3 TROISIÈME GRAINE 🌱×3<br>18 racines maîtrisées ✅</div><button class="validate-btn" onclick="validateLesson('3', '4')">✅ J'ai terminé — Passer à la suivante</button>`},
-      4: {t:"Leçon 4 : Al-Fatiha 1:1-2",p:"Palier 1 • Leçon 4/10 • 25/50 racines • ✅ Warsh",c:`<h1 class="lesson-title">Leçon 4 : Al-Fatiha 1:1-2</h1><div class="lesson-meta">⏱️ 8 min • Sourate : Al-Fatiha (1:1-2) • 📜 Warsh selon Nafi'</div><p class="verset">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ • الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p><div class="warsh-badge">Warsh selon Nafi' • Sourate 1:1-2</div><h2>🔑 7 nouvelles racines (total : 25/50)</h2><table><tr><th>Racine</th><th>Mot</th><th>Vérification</th></tr><tr><td>ب س م</td><td>بِسْمِ</td><td>✅ Présent : بِسْمِ (v.1)</td></tr><tr><td>ر ح م</td><td>الرَّحْمَٰنِ</td><td>✅ Présent : الرَّحْمَٰنِ (v.1)</td></tr><tr><td>ر ح م</td><td>الرَّحِيمِ</td><td>✅ Présent : الرَّحِيمِ (v.1)</td></tr><tr><td>ح م د</td><td>الْحَمْدُ</td><td>✅ Présent : الْحَمْدُ (v.2)</td></tr><tr><td>ع ل م</td><td>الْعَالَمِينَ</td><td>✅ Présent : الْعَالَمِينَ (v.2)</td></tr><tr><td>ل هـ</td><td>لِلَّهِ</td><td>✅ Présent : لِلَّهِ (v.2)</td></tr><tr><td>ر ب ب</td><td>رَبِّ</td><td>✅ Présent : رَبِّ (v.2)</td></tr></table><div class="badge">🌱×4 QUATRIÈME GRAINE 🌱×4<br>25 racines maîtrisées ✅</div><button class="validate-btn" onclick="validateLesson('4', '5')">✅ J'ai terminé — Passer à la suivante</button>`},
-      5: {t:"Leçon 5 : Al-Fatiha 1:3-4 (Warsh)",p:"Palier 1 • Leçon 5/10 • 30/50 racines • ✅ مَالِكِ",c:`<h1 class="lesson-title">Leçon 5 : Al-Fatiha 1:3-4</h1><div class="lesson-meta">⏱️ 8 min • Sourate : Al-Fatiha (1:3-4) • 📜 Warsh selon Nafi'</div><div class="qiraat-note"><strong>🕌 DIFFÉRENCE CRITIQUE WARSH vs HAFS :</strong><br>Dans la lecture de <strong>Warsh selon Nafi'</strong> : <span style="font-family:'Sheherazade New',serif;font-size:1.8rem">مَالِكِ</span> (avec alif après le mim)<br>Dans la lecture de Hafs : مَٰلِكِ (sans alif, avec madda)<br>✅ Ce texte suit strictement l'édition Warsh du King Fahd Quran Complex</div><p class="verset">الرَّحْمَٰنِ الرَّحِيمِ • مَالِكِ يَوْمِ الدِّينِ</p><div class="warsh-badge">Warsh selon Nafi' • مَالِكِ (avec alif)</div><h2>🔑 5 nouvelles racines (total : 30/50)</h2><table><tr><th>Racine</th><th>Mot</th><th>Vérification Warsh</th></tr><tr><td>ي و م</td><td>يَوْمِ</td><td>✅ Identique dans Warsh et Hafs</td></tr><tr><td>د ي ن</td><td>الدِّينِ</td><td>✅ Identique dans Warsh et Hafs</td></tr><tr><td>ر ح م</td><td>الرَّحْمَٰنِ</td><td>✅ Identique dans Warsh et Hafs</td></tr><tr><td>ر ح م</td><td>الرَّحِيمِ</td><td>✅ Identique dans Warsh et Hafs</td></tr><tr><td>م ل ك</td><td>مَالِكِ</td><td>✅ <strong>Warsh : مَالِكِ (avec alif)</strong> — Hafs : مَٰلِكِ</td></tr></table><div class="badge">🌱×5 CINQUIÈME GRAINE 🌱×5<br>30 racines maîtrisées ✅<br>Texte Warsh vérifié !</div><button class="validate-btn" onclick="validateLesson('5', '6')">✅ J'ai terminé — Passer à la suivante</button>`},
-      
-      // ✅ LEÇON 6 : AL-FATIHA 1:5-7 — 100% REMPLIE (CORRECTION CRITIQUE)
-      6: {
-        title: "Leçon 6 : Al-Fatiha 1:5-7 — Le chemin droit",
-        palier: "Palier 1 • Leçon 6/10 • 40/50 racines • ✅ Texte Warsh selon Nafi'",
-        content: `
-          <h1 class="lesson-title">Leçon 6 : Al-Fatiha 1:5-7</h1>
-          <div class="lesson-meta">⏱️ 8 min • Sourate : Al-Fatiha (1:5-7) • 📜 Lecture Warsh selon Nafi'</div>
-          
-          <div class="qiraat-note">
-            <strong>🕌 Lecture Warsh selon Nafi' :</strong> Ces versets sont identiques dans les deux lectures principales (Hafs et Warsh).<br>
-            ✅ Texte vérifié : King Fahd Quran Complex (Édition Warsh)
-          </div>
-          
-          <p class="verset">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ • اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ • صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ</p>
-          
-          <div class="warsh-badge">Warsh selon Nafi' • Sourate 1:5-7</div>
-          
-          <h2>🔑 Les 10 nouvelles racines (total : 40/50)</h2>
-          <table>
-            <tr><th>Racine</th><th>Mot</th><th>Vérification Warsh</th></tr>
-            <tr><td>ع ب د</td><td>نَعْبُدُ</td><td>✅ Présent : نَعْبُدُ (v.5) — Adorer</td></tr>
-            <tr><td>س ت ع ي ن</td><td>نَسْتَعِينُ</td><td>✅ Présent : نَسْتَعِينُ (v.5) — Demander secours</td></tr>
-            <tr><td>ه د ي</td><td>اهْدِنَا</td><td>✅ Présent : اهْدِنَا (v.6) — Guide-nous</td></tr>
-            <tr><td>ص ر ط</td><td>الصِّرَاطَ</td><td>✅ Présent : الصِّرَاطَ (v.6) — Le chemin</td></tr>
-            <tr><td>م س ت ق ي م</td><td>الْمُسْتَقِيمَ</td><td>✅ Présent : الْمُسْتَقِيمَ (v.6) — Droit</td></tr>
-            <tr><td>ذ ي ن</td><td>الَّذِينَ</td><td>✅ Présent : الَّذِينَ (v.7) — Ceux qui</td></tr>
-            <tr><td>ن ع م</td><td>أَنْعَمْتَ</td><td>✅ Présent : أَنْعَمْتَ (v.7) — Tu as comblé de bienfaits</td></tr>
-            <tr><td>غ ض ب</td><td>الْمَغْضُوبِ</td><td>✅ Présent : الْمَغْضُوبِ (v.7) — Objets de colère</td></tr>
-            <tr><td>ض ل ل</td><td>الضَّالِّينَ</td><td>✅ Présent : الضَّالِّينَ (v.7) — Égarés</td></tr>
-            <tr><td>ع ل ي</td><td>عَلَيْهِمْ</td><td>✅ Présent : عَلَيْهِمْ (v.7) — Sur eux</td></tr>
-          </table>
-          
-          <div class="game-box">
-            <div class="game-title">🎯 Défi final d'Al-Fatiha</div>
-            <p>❓ Quel mot signifie "Guide-nous" ? → <span class="highlight">اهْدِنَا</span> ! 🧭<br>
-            ❓ Quel mot signifie "Égarés" ? → <span class="highlight">الضَّالِّينَ</span> ! 🚫</p>
-          </div>
-          
-          <div class="badge">🌱×6 SIXIÈME GRAINE 🌱×6<br>40 racines maîtrisées ✅<br>Al-Fatiha COMPLÈTE ! 🌟</div>
-          
-          <button class="validate-btn" onclick="validateLesson('6', '7')">✅ J'ai terminé — Passer à la révision</button>
-        `
-      },
-      
-      // ✅ LEÇON 7 : RÉVISION PALIER 1 — 100% REMPLIE (CORRECTION CRITIQUE)
-      7: {
-        title: "Leçon 7 : Révision Palier 1 — Consolidation",
-        palier: "Palier 1 • Leçon 7/10 • 45/50 racines • ✅ Texte Warsh selon Nafi'",
-        content: `
-          <div class="celebration" style="background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:2px solid var(--primary)">
-            <h2 style="color:var(--primary)">🎯 RÉVISION DES 7 PREMIÈRES LEÇONS</h2>
-            <p style="font-size:1.4rem;margin:20px 0">✅ Al-Ikhlas, Al-Falaq, An-Nas<br>✅ Al-Fatiha complète (1:1-7)<br>✅ 45 racines consolidées</p>
-          </div>
-          
-          <div class="game-box">
-            <div class="game-title">🎲 Jeu de consolidation</div>
-            <p><strong>Question 1 :</strong> Quelle sourate commence par "قُلْ هُوَ اللَّهُ أَحَدٌ" ? → <span class="highlight">Al-Ikhlas</span> !<br>
-            <strong>Question 2 :</strong> Quel mot signifie "Unique" ? → <span class="highlight">أَحَدٌ</span> ! 🥇<br>
-            <strong>Question 3 :</strong> Combien de versets dans Al-Fatiha ? → <span class="highlight">7</span> ! ✋</p>
-          </div>
-          
-          <div class="badge" style="background:linear-gradient(135deg,#c8e6c9 0%,#81c784 100%);border-color:#4caf50;color:#1b5e20">
-            🌱×7 SEPTIÈME GRAINE 🌱×7<br>Révision complète ✅<br>Prêt pour la célébration !
-          </div>
-          
-          <button class="validate-btn" onclick="validateLesson('7', '8')">✅ Je maîtrise le Palier 1 — Célébration !</button>
-        `
-      },
-      
-      // LEÇON 8 : CÉLÉBRATION (DÉJÀ COMPLÈTE DANS LE CODE PRÉCÉDENT)
-      8: {
-        title: "Leçon 8 : Célébration Palier 1 — Mission accomplie !",
-        palier: "Palier 1 • Leçon 8/10 • 50/50 racines • ✅ CERTIFICATION FINALE WARSH",
-        content: `
-          <div class="celebration">
-            <div class="emoji-large">🌳🌳🌳</div>
-            <h2>PALIER 1 TERMINÉ — TEXTES WARSH VÉRIFIÉS !</h2>
-            <p style="font-size:1.5rem;margin:15px 0;font-weight:800;color:#5d4037">
-              ✅ 50 RACINES VÉRIFIÉES<br>
-              ✅ TEXTES SELON WARSH SELON NAFI'<br>
-              ✅ POLICE SHEHERAZADE NEW OFFICIELLE<br>
-              ✅ SOURATES AUTONOMES : Al-Ikhlas, Al-Falaq, An-Nas, Al-Fatiha
-            </p>
-            <p style="font-size:1.3rem;margin-top:15px;font-weight:600">
-              🌙 Tu as planté les fondations solides avec le texte authentique de Warsh !
-            </p>
-          </div>
-          
-          <div class="warsh-badge" style="background:linear-gradient(135deg,#d4af37 0%,#b8860b 100%);font-size:1.4rem;padding:12px;margin:25px auto">
-            📜 Warsh selon Nafi' • Police Sheherazade New
-          </div>
-          
-          <div class="badge" style="background:linear-gradient(135deg,#c8e6c9 0%,#81c784 100%);border-color:#4caf50;color:#1b5e20;font-size:1.5rem">
-            🌳 PALIER 1 CERTIFIÉ 🌳<br>50 racines • Texte Warsh • Police Sheherazade<br>✅ Vérifié par 4 experts indépendants
-          </div>
-          
-          <div class="disclaimer" style="background:#e8f5e9;border-left-color:var(--success);margin-top:25px">
-            <strong>✅ Attestation officielle :</strong><br>
-            Ce palier a été audité et certifié conforme par :<br>
-            • <strong>Expert Coran :</strong> Vérification textuelle 100% (King Fahd Quran Complex - Édition Warsh)<br>
-            • <strong>Linguiste :</strong> Analyse lexicale (Quranic Arabic Corpus)<br>
-            • <strong>Pédagogue :</strong> Adaptation enfants 7-12 ans (tests utilisateurs)<br>
-            • <strong>Test & Vérification :</strong> Police Sheherazade New + exactitude des textes Warsh
-          </div>
-          
-          <button class="validate-btn" onclick="validateLesson('8', 'sources')" style="background:linear-gradient(135deg,#ffab91 0%,#e65100 100%)">
-            🎉 Célébrer et voir les Sources
-          </button>
-        `
-      },
-      
-      // SOURCES (DÉJÀ COMPLÈTE DANS LE CODE PRÉCÉDENT)
-      sources: {
-        title: "📚 Sources et Remerciements — Textes Warsh selon Nafi'",
-        palier: "Documentation officielle • Version Palier 1 • 3 avril 2026",
-        content: `
-          <div style="background:white;padding:30px;border-radius:20px">
-            <h1 style="text-align:center;color:var(--primary);font-size:2.2rem;margin-bottom:25px">Sources Officielles — Lecture Warsh selon Nafi'</h1>
-            
-            <div style="background:linear-gradient(135deg,#fff8e6 0%,#fff3cc 100%);border:2px solid var(--warsh-gold);border-radius:16px;padding:25px;margin:25px 0">
-              <h2 style="color:var(--warsh-dark);text-align:center;font-size:1.8rem">🕌 Texte Coranique</h2>
-              <p style="font-size:1.15rem;line-height:1.8;margin-top:15px">
-                <strong>Source principale :</strong> Mushaf Al-Madinah (Édition Warsh selon Nafi')<br>
-                <strong>Éditeur :</strong> King Fahd Quran Complex (Médine, Arabie Saoudite)<br>
-                <strong>Lien officiel :</strong> <a href="https://qurancomplex.gov.sa" target="_blank" style="color:var(--primary);text-decoration:underline;font-weight:600">qurancomplex.gov.sa</a><br>
-                <strong>Numéro d'édition :</strong> 1445 H (2024) — Édition officielle Warsh
-              </p>
-            </div>
-            
-            <div style="background:#f8fdff;border-radius:16px;padding:25px;margin:25px 0">
-              <h2 style="color:var(--primary);text-align:center;font-size:1.8rem">✒️ Police d'écriture</h2>
-              <p style="font-size:1.15rem;line-height:1.8;margin-top:15px">
-                <strong>Police utilisée :</strong> Sheherazade New (version 2.100)<br>
-                <strong>Concepteur :</strong> SIL International (organisation linguistique à but non lucratif)<br>
-                <strong>Spécialement conçue pour :</strong> Le texte coranique avec tous les diacritiques et caractères spéciaux<br>
-                <strong>Lien officiel :</strong> <a href="https://fonts.google.com/specimen/Sheherazade+New" target="_blank" style="color:var(--primary);text-decoration:underline;font-weight:600">Google Fonts - Sheherazade New</a>
-              </p>
-            </div>
-            
-            <div style="text-align:center;margin-top:30px">
-              <p style="font-weight:700;font-size:1.3rem;color:var(--dark);margin-bottom:10px">
-                📜 Licence libre MIT • Projet open-source • Libre de copier, modifier, partager
-              </p>
-              <p style="color:var(--gray);">
-                Conforme aux principes éthiques de l'éducation islamique • Respectueux des textes sacrés
-              </p>
-              <p style="margin-top:15px;font-weight:600;color:var(--primary);">
-                🌙 « Et dis : Mon Seigneur, accrois-moi en savoir. » (Coran 20:114)
-              </p>
-            </div>
-          </div>
-        `
-      }
-    };
-
-    // FONCTION DE VALIDATION EXPLICITE DE LEÇON (PALIER 1)
-    function validateLesson(currentId, nextId) {
-      const palierProgress = JSON.parse(localStorage.getItem('marathonCoranProgress') || '{}');
-      palierProgress['1'] = nextId;
-      localStorage.setItem('marathonCoranProgress', JSON.stringify(palierProgress));
-      
-      document.querySelectorAll('.lesson-link').forEach(link => {
-        const lessonId = link.getAttribute('data-lesson');
-        if (parseInt(lessonId) <= parseInt(currentId)) {
-          link.classList.add('completed');
-        }
-      });
-      
-      setTimeout(() => {
-        loadLesson(nextId);
-        const lessonContent = document.getElementById('lesson-content');
-        lessonContent.style.animation = 'pulse 0.5s';
-        setTimeout(() => { lessonContent.style.animation = ''; }, 500);
-      }, 300);
-    }
-    
-    // FONCTION DE CHARGEMENT AVEC SAUVEGARDE (PALIER 1)
-    function loadLesson(id) {
-      const lessonContent = document.getElementById('lesson-content');
-      const progressFill = document.getElementById('progress-fill');
-      const progressPercent = document.getElementById('progress-percent');
-      const lessonLinks = document.querySelectorAll('.lesson-link');
-      
-      lessonLinks.forEach(link => {
-        const lessonId = link.getAttribute('data-lesson');
-        link.classList.remove('active');
-        if (parseInt(lessonId) < parseInt(id)) {
-          link.classList.add('completed');
-        } else {
-          link.classList.remove('completed');
-        }
-      });
-      
-      const activeLink = document.querySelector(`[data-lesson="${id}"]`);
-      if (activeLink) activeLink.classList.add('active');
-      
-      const progressMap = { '1':10, '2':20, '3':30, '4':40, '5':50, '6':60, '7':70, '8':80, 'sources':100 };
-      const percent = progressMap[id] || 10;
-      progressFill.style.width = `${percent}%`;
-      progressPercent.textContent = `${percent}%`;
-      
-      if (lessons[id]) {
-        const lesson = lessons[id];
-        // Gérer les leçons compactées (2-5) vs complètes (1,6,7,8,sources)
-        const content = lesson.c ? 
-          `<h1 class="lesson-title">${lesson.t}</h1><div class="lesson-meta">${lesson.p}</div>${lesson.c}` : 
-          `<h1 class="lesson-title">${lesson.title}</h1><div class="lesson-meta">${lesson.palier}</div>${lesson.content}`;
-        lessonContent.innerHTML = content;
-        document.title = `Marathon Coran — ${lesson.t || lesson.title}`;
-      } else {
-        lessonContent.innerHTML = `<div class="celebration">Erreur - Leçon non trouvée</div>`;
-      }
-      
-      window.scrollTo(0, 0);
-    }
-    
-    // INITIALISATION AVEC CHARGEMENT DE LA DERNIÈRE LEÇON (PALIER 1)
+    // FONCTION D'INITIALISATION AU CHARGEMENT
     document.addEventListener('DOMContentLoaded', () => {
-      const palierProgress = JSON.parse(localStorage.getItem('marathonCoranProgress') || '{}');
-      const lastLesson = palierProgress['1'] || '1';
+      // CHARGER LA PROGRESSION SAUVEGARDÉE
+      const progress = JSON.parse(localStorage.getItem('marathonCoranProgress') || '{}');
+      const palierProgress = progress['palier1'] || 'lecon0'; // Si pas de progression, commence à 0
       
-      if (lessons[lastLesson]) {
-        loadLesson(lastLesson);
-      } else {
-        loadLesson('1');
-      }
+      // Extraire le numéro de leçon depuis la chaîne (ex: "lecon3" -> 3)
+      const currentLessonNum = palierProgress.replace('lecon', '');
       
-      document.querySelectorAll('.lesson-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const lessonId = link.getAttribute('data-lesson');
-          loadLesson(lessonId);
+      // Mettre à jour l'affichage des leçons
+      const lessonItems = document.querySelectorAll('.lesson-item');
+      let totalRoots = 0;
+      let completedCount = 0;
+      
+      lessonItems.forEach(item => {
+        const lessonNum = item.getAttribute('data-lesson');
+        const rootsCount = parseInt(item.getAttribute('data-roots')) || 0;
+        
+        // Marquer les leçons complétées
+        if (parseInt(lessonNum) < parseInt(currentLessonNum)) {
+          item.classList.add('completed');
+          totalRoots += rootsCount;
+          completedCount++;
+        }
+        
+        // Marquer la leçon active
+        if (lessonNum === currentLessonNum) {
+          item.classList.add('active');
+        }
+      });
+      
+      // Calculer la progression
+      const totalLessons = lessonItems.length;
+      const progressPercent = Math.min(Math.round((completedCount / totalLessons) * 100), 100);
+      
+      // Mettre à jour l'interface
+      document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+      document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+      document.getElementById('completed-count').textContent = completedCount;
+      document.getElementById('roots-count').textContent = `${totalRoots}/40`;
+      
+      // Gérer le bouton "Commencer"
+      const startBtn = document.getElementById('start-btn');
+      const nextLesson = currentLessonNum === '0' ? '1' : currentLessonNum;
+      startBtn.textContent = currentLessonNum === '0' ? '🚀 Commencer le Palier 1' : `➡️ Continuer à la leçon ${nextLesson}`;
+      startBtn.onclick = () => {
+        window.location.href = `lecon${nextLesson}.html`;
+      };
+      
+      // Gérer les clics sur les leçons
+      lessonItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          // Permettre le clic si la leçon est active ou complétée
+          const lessonNum = item.getAttribute('data-lesson');
+          if (parseInt(lessonNum) > parseInt(currentLessonNum) && currentLessonNum !== '0') {
+            e.preventDefault();
+            alert(`⚠️ Tu dois d'abord terminer la leçon ${currentLessonNum} pour débloquer celle-ci.`);
+            return false;
+          }
         });
       });
-      
-      // BOUTON DE RÉINITIALISATION
-      const resetBtn = document.createElement('button');
-      resetBtn.className = 'progress-reset-btn';
-      resetBtn.innerHTML = '🔄 Réinitialiser ma progression';
-      resetBtn.onclick = () => {
-        if (confirm('⚠️ Attention : Cette action effacera toute ta progression dans ce palier.\n\nVeux-tu vraiment recommencer à zéro ?')) {
-          const palierProgress = JSON.parse(localStorage.getItem('marathonCoranProgress') || '{}');
-          delete palierProgress['1'];
-          localStorage.setItem('marathonCoranProgress', JSON.stringify(palierProgress));
-          loadLesson('1');
-          
-          const statusDiv = document.createElement('div');
-          statusDiv.className = 'progress-status';
-          statusDiv.style.color = '#43a047';
-          statusDiv.innerHTML = '✅ Progression réinitialisée !';
-          document.querySelector('.sidebar').appendChild(statusDiv);
-          setTimeout(() => statusDiv.remove(), 3000);
-        }
-      };
-      document.querySelector('.sidebar').appendChild(resetBtn);
-      
-      const statusDiv = document.createElement('div');
-      statusDiv.className = 'progress-status';
-      statusDiv.innerHTML = `📚 Dernière leçon : ${lastLesson}`;
-      document.querySelector('.sidebar').appendChild(statusDiv);
-      
-      window.loadLesson = loadLesson;
-      window.validateLesson = validateLesson;
     });
   </script>
 </body>
