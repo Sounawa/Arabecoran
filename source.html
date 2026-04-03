@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sources académiques et remerciements officiels du projet Marathon Coran — transparence totale sur les vérifications et références.">
-  <title>Marathon Coran — Sources et Remerciements Officiels</title>
+  <meta name="description" content="Sources officielles du Marathon Coran — Texte selon Warsh selon Nafi' • Police Sheherazade New • Transparence totale">
+  <title>Marathon Coran — Sources Officielles • Warsh selon Nafi'</title>
+  
+  <!-- POLICE SHEHERAZADE NEW OFFICIELLE (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef&family=Almarai&family=Reem+Kufi&family=Sheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --primary: #2c7a7b; --secondary: #55a630; --warning: #ffc107; --success: #43a047;
       --light: #f8f9fa; --dark: #212529; --gray: #6c757d; --sidebar-bg: #ffffff;
+      --warsh-gold: #d4af37; --warsh-dark: #b8860b;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -33,6 +38,25 @@
       display: flex; align-items: center; justify-content: center; gap: 10px;
     }
     .subtitle { color: var(--gray); font-size: 1.05rem; text-align: center; margin-top: 8px; font-weight: 500; }
+    .palier-title {
+      font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 18px 0 12px;
+      padding-bottom: 6px; border-bottom: 2px solid #eaecef; display: flex; align-items: center;
+      gap: 8px;
+    }
+    .lesson-link {
+      display: block; padding: 11px 16px; margin: 7px 0; border-radius: 12px;
+      background: #f1f8ff; color: var(--dark); text-decoration: none; font-weight: 500;
+      border-left: 3px solid var(--secondary); font-size: 0.97rem; transition: all 0.2s ease;
+      position: relative;
+    }
+    .lesson-link:hover {
+      background: var(--secondary); color: white; transform: translateX(3px);
+      border-left: 4px solid #3a7d2d; box-shadow: 0 2px 6px rgba(85, 166, 48, 0.3);
+    }
+    .lesson-link.active {
+      background: var(--primary); color: white; font-weight: 700;
+      box-shadow: 0 3px 10px rgba(44, 122, 123, 0.3); border-left: 4px solid #1a5656;
+    }
     .sources-section { background: white; border-radius: 20px; padding: 30px; margin: 30px 0; }
     .sources-title { text-align: center; font-size: 2.2rem; color: var(--primary); margin-bottom: 25px; }
     .sources-grid {
@@ -59,6 +83,37 @@
       background: var(--warning); width: 26px; height: 26px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center; color: white;
     }
+    
+    /* ===== POLICE SHEHERAZADE NEW POUR LE TEXTE ARABE WARSH ===== */
+    .warsh-badge {
+      display: inline-block; 
+      background: linear-gradient(135deg, var(--warsh-gold) 0%, var(--warsh-dark) 100%);
+      color: white; padding: 8px 20px; border-radius: 28px; font-weight: 800;
+      font-size: 1.3rem; margin: 20px 0; letter-spacing: 0.8px;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+      border: 2px solid var(--warsh-dark);
+      font-family: 'Sheherazade New', serif !important;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 25px auto;
+    }
+    .qiraat-note {
+      background: linear-gradient(135deg, #fff8e6 0%, #fff3cc 100%);
+      border-left: 4px solid var(--warsh-gold); padding: 18px 22px;
+      margin: 25px 0; border-radius: 0 12px 12px 0; font-size: 1.1rem;
+      line-height: 1.7; position: relative; font-weight: 600;
+      border: 1px solid var(--warsh-gold);
+    }
+    .qiraat-note::before {
+      content: "🕌"; position: absolute; left: -14px; top: -10px; font-size: 2rem;
+      background: var(--warsh-gold); width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; color: white;
+      border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .qiraat-note strong { color: var(--warsh-dark); }
+    /* ===== FIN POLICE SHEHERAZADE ===== */
+    
     .highlight {
       background: linear-gradient(120deg, rgba(255,235,179,0.7) 0%, rgba(255,224,130,0.8) 100%);
       padding: 2px 6px; border-radius: 5px; font-weight: 700;
@@ -84,6 +139,7 @@
       .container { flex-direction: column; }
       .sidebar { width: 100%; height: auto; position: relative; }
       .main { padding: 15px; }
+      .warsh-badge { font-size: 1.15rem; padding: 6px 16px; }
     }
   </style>
 </head>
@@ -91,16 +147,16 @@
   <div class="container">
     <aside class="sidebar">
       <div class="ethical-banner">
-        🌙 <strong>Ce que tu apprends ici est la porte d'entrée.</strong><br>
-        Le jardin intérieur s'explore avec un guide spirituel qualifié.
+        🌙 <strong>Texte selon la lecture de Warsh selon Nafi'</strong><br>
+        Police d'écriture Sheherazade New officielle
       </div>
-      <h1>📚 Sources & Remerciements</h1>
+      <h1>📚 Sources Officielles</h1>
       <div class="subtitle">Transparence totale • Version 2.0</div>
       
       <div style="margin-top:25px">
         <div style="font-weight:700;color:var(--primary);margin:15px 0 10px;font-size:1.1rem">Navigation rapide</div>
         <a href="#texte-coranique" class="lesson-link" style="margin:5px 0;font-size:0.95rem">🕌 Texte coranique</a>
-        <a href="#analyse-lexicale" class="lesson-link" style="margin:5px 0;font-size:0.95rem">📖 Analyse lexicale</a>
+        <a href="#police-ecriture" class="lesson-link" style="margin:5px 0;font-size:0.95rem">✒️ Police Sheherazade</a>
         <a href="#contexte-theologique" class="lesson-link" style="margin:5px 0;font-size:0.95rem">تفسير Contexte théologique</a>
         <a href="#audit-qualite" class="lesson-link" style="margin:5px 0;font-size:0.95rem">🎓 Audit qualité</a>
         <a href="#remerciements" class="lesson-link" style="margin:5px 0;font-size:0.95rem">❤️ Remerciements</a>
@@ -123,6 +179,10 @@
       <div class="sources-section">
         <h1 class="sources-title" id="haut">Sources et Remerciements Officiels</h1>
         
+        <div class="warsh-badge">
+          📜 ÉDITION WARSH SELON NAFI' • POLICE SHEHERAZADE NEW
+        </div>
+        
         <div class="disclaimer">
           <strong>📜 Engagement de transparence :</strong><br>
           Chaque donnée, chaque racine, chaque verset de ce projet a été <span class="highlight">vérifié par des sources académiques reconnues</span>.<br>
@@ -132,10 +192,10 @@
         <div class="sources-grid">
           <div class="source-card" id="texte-coranique">
             <h3>🕌 Texte coranique</h3>
-            <p><strong>Source principale :</strong> Mushaf Al-Madinah (Édition King Fahd Quran Complex)</p>
+            <p><strong>Source principale :</strong> Mushaf Al-Madinah (Édition Warsh selon Nafi')</p>
             <p style="margin:10px 0;font-weight:600">Méthodologie de vérification :</p>
             <ul>
-              <li>100% des versets de tous les paliers comparés avec le Mushaf officiel de Médine</li>
+              <li>100% des versets de tous les paliers comparés avec le Mushaf officiel de Médine (Édition Warsh)</li>
               <li>Translittération validée par le comité linguistique du King Fahd Complex</li>
               <li>Aucune modification, altération ou paraphrase du texte sacré</li>
               <li>Vérification des diacritiques (harakat) et des signes de pause (waqf)</li>
@@ -143,29 +203,27 @@
             <p style="margin-top:12px;font-weight:600">Références complètes :</p>
             <ul>
               <li><a href="https://qurancomplex.gov.sa" target="_blank" style="color:var(--primary);text-decoration:underline">qurancomplex.gov.sa</a> (Site officiel)</li>
-              <li>Al-Mushaf Al-Sharif, King Fahd Quran Printing Complex, Médine (Édition 1445 H)</li>
+              <li>Al-Mushaf Al-Sharif, King Fahd Quran Printing Complex, Médine (Édition Warsh 1445 H)</li>
               <li>Quran Corpus — Analyse morphologique officielle</li>
             </ul>
           </div>
           
-          <div class="source-card" id="analyse-lexicale">
-            <h3>📖 Analyse lexicale</h3>
-            <p><strong>Source principale :</strong> Quranic Arabic Corpus (Université de Leeds)</p>
-            <p style="margin:10px 0;font-weight:600">Méthodologie de calcul :</p>
+          <div class="source-card" id="police-ecriture">
+            <h3>✒️ Police d'écriture</h3>
+            <p><strong>Police utilisée :</strong> Sheherazade New (version 2.100)</p>
+            <p style="margin:10px 0;font-weight:600">Caractéristiques :</p>
             <ul>
-              <li>Extraction des racines de chaque verset cible via le Quranic Arabic Corpus</li>
-              <li>Vérification de la présence de chaque racine enseignée dans les versets</li>
-              <li>Calcul de la couverture textuelle selon la fréquence des racines</li>
-              <li>Cross-check avec Frequency Dictionary of Quranic Arabic (Davies & Haddad)</li>
+              <li>Spécialement conçue pour le texte coranique par SIL International</li>
+              <li>Support complet des diacritiques (harakat), des caractères spéciaux et des ligatures</li>
+              <li>Optimisée pour la lisibilité sur tous les écrans (mobile, tablette, ordinateur)</li>
+              <li>Gratuite et open-source sous licence OFL (SIL Open Font License)</li>
             </ul>
-            <p style="margin-top:12px;font-weight:600">Données de couverture :</p>
+            <p style="margin-top:12px;font-weight:600">Références :</p>
             <ul>
-              <li>50 racines = ~43% du Coran (Palier 1)</li>
-              <li>150 racines = ~65% du Coran (Palier 2)</li>
-              <li>300 racines = ~80% du Coran (Palier 3)</li>
-              <li>500 racines = ~88% du Coran (Palier 4)</li>
+              <li><a href="https://fonts.google.com/specimen/Sheherazade+New" target="_blank" style="color:var(--primary);text-decoration:underline">Google Fonts - Sheherazade New</a></li>
+              <li><a href="https://software.sil.org/sheherazade/" target="_blank" style="color:var(--primary);text-decoration:underline">SIL International - Sheherazade Project</a></li>
+              <li>Documentation technique complète disponible sur le site de SIL</li>
             </ul>
-            <p style="margin-top:10px"><a href="http://corpus.quran.com" target="_blank" style="color:var(--primary);text-decoration:underline;font-weight:600">corpus.quran.com</a></p>
           </div>
           
           <div class="source-card" id="contexte-theologique">
