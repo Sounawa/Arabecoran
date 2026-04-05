@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palier 1 — Les Petites Sourates | Marathon Coran</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ====== TOP NAV ====== -->
+  <nav class="top-nav">
+    <div class="container container--wide">
+      <a href="../index.html" class="top-nav__logo">
+        <span>🕌</span> Marathon Coran
+      </a>
+      <div class="top-nav__breadcrumb">
+        <a href="../index.html">Accueil</a>
+        <span class="separator">›</span>
+        <span>Palier 1</span>
+      </div>
+      <div class="top-nav__streak">🔥 <span id="streak-count">0</span></div>
+    </div>
+  </nav>
+
+  <!-- ====== PALIER HEADER ====== -->
+  <header class="palier-header">
+    <div class="palier-header__number">📖 Palier 1</div>
+    <h1 class="palier-header__title">Les Petites Sourates</h1>
+    <p class="palier-header__desc">Découvre les racines les plus fréquentes du Coran avec les sourates les plus courtes — de Al-Fatiha aux sourates de Juz 'Amma.</p>
+    <div style="margin-top:12px;">
+      <span id="progress-stats" style="display:inline-flex; gap:16px; font-size:0.85rem; color:rgba(255,255,255,0.9); font-weight:600;"></span>
+    </div>
+  </header>
+
+  <!-- ====== LESSON LIST ====== -->
+  <main class="lesson-list" id="lesson-list">
+    <p style="text-align:center; padding:40px; color:var(--text-light);">Chargement des leçons…</p>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <div class="footer">
+    <p><a href="../index.html">← Retour à l'accueil</a></p>
+    <p style="margin-top:8px;">📖 Projet éducatif libre — Marathon Coran © 2025</p>
+  </div>
+
+  <script src="lessons-data.js"></script>
+  <script>
+    (function() {
+      // Load progress
+      var data = JSON.parse(localStorage.getItem('mc_progress') || '{}');
+      if (!data.completed) data.completed = [];
+      if (!data.xp) data.xp = 0;
+      document.getElementById('streak-count').textContent = data.streak || 0;
+
+      if (typeof PALIER1_LESSONS === 'undefined') {
+        document.getElementById('lesson-list').innerHTML = '<p style="text-align:center; padding:40px; color:var(--text-coral);">Erreur de chargement des données.</p>';
+        return;
+      }
+
+      // Group by surah
+      var groups = {};
+      var lessonNum = 1;
+      var emojis = {
+        1:'📖',78:'🔭',79:'💫',80:'👀',81:'🌅',82:'💫',83:'⚖️',84:'🌌',
+        85:'⭐',86:'🌠',87:'📿',88:'🌫️',89:'🌅',90:'🏙️',91:'☀️',92:'🌙',
+        93:'☀️',94:'🌟',95:'🫐',96:'📖',97:'⭐',98:'📜',99:'🌍',100:'🐎',
+        101:'📯',102:'💰',103:'⏳',104:'😤',105:'🐘',106:'⛺',107:'🤝',
+        108:'💧',109:'🤝',110:'⚔️',111:'🔥',112:'💎',113:'🌅',114:'🛡️'
+      };
+
+      PALIER1_LESSONS.forEach(function(l) {
+        if (!groups[l.surah]) groups[l.surah] = { name: l.surahName, number: l.surah, lessons: [] };
+        l._globalNum = lessonNum++;
+        groups[l.surah].lessons.push(l);
+      });
+
+      // Sort by surah number
+      var sorted = Object.values(groups).sort(function(a,b) { return a.number - b.number; });
+
+      // Render
+      var html = '';
+      sorted.forEach(function(g) {
+        html += '<div class="lesson-list__group">';
+        html += '<h2 class="lesson-list__group-title">' + (emojis[g.number]||'📖') + ' ' + g.name + ' — Sourate ' + g.number + '</h2>';
+        g.lessons.forEach(function(l) {
+          var isCompleted = data.completed.indexOf(l.id) !== -1;
+          var completedClass = isCompleted ? ' lesson-list__item--done' : '';
+          html += '<a href="lesson.html?lesson=' + l.id + '" class="lesson-list__item' + completedClass + '">';
+          html += '<div class="lesson-list__num">' + (isCompleted ? '✓' : l._globalNum) + '</div>';
+          html += '<div class="lesson-list__info">';
+          html += '<div class="lesson-list__title">' + l.shortTitle + '</div>';
+          html += '<div class="lesson-list__meta">' + l.words.length + ' mots · ' + l.duration + '</div>';
+          html += '</div>';
+          html += '<span class="lesson-list__arrow">›</span>';
+          html += '</a>';
+        });
+        html += '</div>';
+      });
+
+      document.getElementById('lesson-list').innerHTML = html;
+
+      // Update stats
+      var total = PALIER1_LESSONS.length;
+      var completed = data.completed.length;
+      var xp = data.xp || 0;
+      document.getElementById('progress-stats').innerHTML = 
+        '<span>📚 ' + total + ' leçons</span>' +
+        '<span>✅ ' + completed + ' terminées</span>' +
+        '<span>⭐ ' + xp + ' XP</span>';
+    })();
+  </script>
+</body>
+</html>
