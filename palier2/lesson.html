@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marathon Coran — Palier 2</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ====== TOP NAV ====== -->
+  <nav class="top-nav">
+    <div class="container container--wide">
+      <a href="../index.html" class="top-nav__logo">
+        <span>🕌</span> Marathon Coran
+      </a>
+      <div class="top-nav__breadcrumb">
+        <a href="../index.html">Accueil</a>
+        <span class="separator">›</span>
+        <a href="index.html">Palier 2</a>
+        <span class="separator">›</span>
+        <span id="breadcrumb-lesson">Chargement…</span>
+      </div>
+      <div class="top-nav__streak">🔥 <span id="streak-count">0</span></div>
+    </div>
+  </nav>
+
+  <!-- ====== PROGRESS BAR ====== -->
+  <div class="progress-bar">
+    <div class="progress-bar__fill" style="width: 0%;" id="main-progress"></div>
+  </div>
+
+  <!-- ====== LESSON HEADER ====== -->
+  <header class="lesson-header container">
+    <div class="lesson-header__badge" id="lesson-badge">📖 Mini-Cours</div>
+    <h1 class="lesson-header__title" id="lesson-title">Chargement…</h1>
+    <p class="lesson-header__subtitle" id="lesson-subtitle"></p>
+    <div class="lesson-header__meta">
+      <span id="lesson-duration">⏱ ~6 min</span>
+      <span id="lesson-words">📝 mots</span>
+      <span class="xp-badge" id="lesson-xp">+15 XP</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ====== SECTION 1 : LES VERSETS ====== -->
+    <section class="verses-section reveal">
+      <h2 class="verses-section__title">📜 Les versets à étudier</h2>
+      <div id="verses-container"></div>
+    </section>
+
+    <!-- ====== SECTION 2 : DECRYPTAGE DES MOTS ====== -->
+    <section class="words-section reveal">
+      <h2 class="words-section__title">🔍 Décryptage des mots</h2>
+      <p class="words-section__intro">
+        Chaque mot arabe est construit sur une <strong>racine</strong> (en général 3 lettres).
+        Quand tu connais la racine, tu peux deviner le sens de plein d'autres mots ! 
+        Observe les couleurs : les mots de la <strong>même couleur</strong> partagent la même racine.
+      </p>
+      <div id="words-container"></div>
+      <div id="roots-summary"></div>
+    </section>
+
+    <!-- ====== SECTION 3 : MINI QUIZ ====== -->
+    <section class="quiz-section reveal" id="quiz">
+      <h2 class="quiz-section__title">🧠 Mini-Quiz</h2>
+      <p class="quiz-section__subtitle">Teste ce que tu as retenu ! Clique sur la bonne réponse.</p>
+      <div id="quiz-container"></div>
+
+      <!-- Quiz Result -->
+      <div class="quiz-result" id="quiz-result">
+        <div class="quiz-result__score" id="quiz-score"></div>
+        <div class="quiz-result__message" id="quiz-message"></div>
+        <div class="stars" id="quiz-stars"></div>
+        <br><br>
+        <button class="quiz-result__btn" id="quiz-retry" onclick="resetQuiz()">🔄 Recommencer</button>
+      </div>
+    </section>
+
+    <!-- ====== SECTION 4 : COMPLETION ====== -->
+    <section class="completion reveal" id="completion" style="display:none;">
+      <div class="completion__badge">🌟</div>
+      <h2 class="completion__title">Bravo !</h2>
+      <p class="completion__text" id="completion-text"></p>
+      <div class="completion__stats">
+        <div class="completion__stat">
+          <div class="completion__stat-value" id="completion-words">0</div>
+          <div class="completion__stat-label">Mots appris</div>
+        </div>
+        <div class="completion__stat">
+          <div class="completion__stat-value" id="completion-roots">0</div>
+          <div class="completion__stat-label">Racines</div>
+        </div>
+        <div class="completion__stat">
+          <div class="completion__stat-value" id="completion-xp">0</div>
+          <div class="completion__stat-label">XP gagnés</div>
+        </div>
+      </div>
+      <a href="#" class="btn-next" id="btn-next-lesson">Cours suivant →</a>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER NAV ====== -->
+  <footer class="container">
+    <div class="lesson-footer">
+      <a href="index.html" class="btn-nav btn-nav--prev">← Palier 2</a>
+      <span style="font-size:0.85rem; color:var(--text-light);" id="footer-progress">Mini-cours / Palier 2</span>
+      <a href="#" class="btn-nav btn-nav--next" id="btn-next">Suivant →</a>
+    </div>
+  </footer>
+
+  <!-- ====== JAVASCRIPT ====== -->
+  <script src="lessons-data.js"></script>
+  <script>
+    // === Get lesson from URL ===
+    function getLessonId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('lesson') || null;
+    }
+
+    // === Find lesson data ===
+    function findLesson(id) {
+      if (typeof PALIER2_LESSONS === 'undefined') return null;
+      return PALIER2_LESSONS.find(l => l.id === id) || null;
+    }
+
+    // === Get next lesson ===
+    function getNextLesson(currentId) {
+      if (typeof PALIER2_LESSONS === 'undefined') return null;
+      const idx = PALIER2_LESSONS.findIndex(l => l.id === currentId);
+      if (idx >= 0 && idx < PALIER2_LESSONS.length - 1) {
+        return PALIER2_LESSONS[idx + 1];
+      }
+      return null;
+    }
+
+    function getPrevLesson(currentId) {
+      if (typeof PALIER2_LESSONS === 'undefined') return null;
+      const idx = PALIER2_LESSONS.findIndex(l => l.id === currentId);
+      if (idx > 0) {
+        return PALIER2_LESSONS[idx - 1];
+      }
+      return null;
+    }
+
+    // === Render lesson ===
+    function renderLesson(lesson) {
+      if (!lesson) {
+        document.querySelector('main').innerHTML = '<div style="text-align:center;padding:80px 20px;"><h2>Leçon introuvable</h2><p>Cette leçon n\'existe pas encore. <a href="index.html">Retour au Palier 2</a></p></div>';
+        return;
+      }
+
+      const lessonNumber = PALIER2_LESSONS.indexOf(lesson) + 1;
+      const totalLessons = PALIER2_LESSONS.length;
+
+      // Page title
+      document.title = lesson.title + ' | Marathon Coran — Palier 2';
+
+      // Breadcrumb
+      document.getElementById('breadcrumb-lesson').textContent = lesson.shortTitle || lesson.title;
+
+      // Header
+      document.getElementById('lesson-badge').textContent = '📖 Mini-Cours ' + lessonNumber;
+      document.getElementById('lesson-title').textContent = lesson.title;
+      document.getElementById('lesson-subtitle').textContent = lesson.subtitle || '';
+      document.getElementById('lesson-duration').textContent = '⏱ ' + (lesson.duration || '~6 min');
+      document.getElementById('lesson-words').textContent = '📝 ' + lesson.words.length + ' mots';
+      document.getElementById('lesson-xp').textContent = '+' + (lesson.xp || 15) + ' XP';
+
+      // Footer
+      document.getElementById('footer-progress').textContent = 'Mini-cours ' + lessonNumber + ' / ' + totalLessons;
+
+      // Next/Prev buttons
+      const nextLesson = getNextLesson(lesson.id);
+      const prevLesson = getPrevLesson(lesson.id);
+
+      const btnNext = document.getElementById('btn-next');
+      const btnNextLesson = document.getElementById('btn-next-lesson');
+
+      if (nextLesson) {
+        btnNext.href = 'lesson.html?lesson=' + nextLesson.id;
+        btnNextLesson.href = 'lesson.html?lesson=' + nextLesson.id;
+        btnNextLesson.textContent = 'Cours suivant → ' + nextLesson.shortTitle;
+      } else {
+        btnNext.style.display = 'none';
+        btnNextLesson.textContent = '🎉 Retour au Palier 2';
+        btnNextLesson.href = 'index.html';
+      }
+
+      if (prevLesson) {
+        const btnPrev = document.querySelector('.btn-nav--prev');
+        btnPrev.href = 'lesson.html?lesson=' + prevLesson.id;
+        btnPrev.textContent = '← ' + prevLesson.shortTitle;
+      }
+
+      // === Render Verses ===
+      const versesContainer = document.getElementById('verses-container');
+      let versesHTML = '';
+      lesson.verses.forEach(function(v) {
+        versesHTML += '<div class="verse-card animate-fade-in">' +
+          '<div class="verse-card__number">' + v.number + '</div>' +
+          '<div class="verse-card__arabic">' + v.arabic + '</div>' +
+          '<div class="verse-card__translation">« ' + v.french + ' »</div>' +
+          '</div>';
+      });
+      versesContainer.innerHTML = versesHTML;
+
+      // === Render Words ===
+      const wordsContainer = document.getElementById('words-container');
+      let wordsHTML = '';
+      lesson.words.forEach(function(w) {
+        const rootColorClass = 'word-card--root-' + (w.rootColor || 1);
+        wordsHTML += '<div class="word-card ' + rootColorClass + ' animate-fade-in reveal">' +
+          '<div class="word-card__header">' +
+            '<div class="word-card__emoji">' + (w.emoji || '📝') + '</div>' +
+            '<div style="flex-grow:1; text-align:right; direction:rtl;">' +
+              '<div class="word-card__word">' + w.word + '</div>' +
+              '<div class="word-card__translit">' + (w.translit || '') + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="word-card__body">' +
+            '<div class="word-card__info">' +
+              '<div class="word-card__info-label">Sens</div>' +
+              '<div class="word-card__info-value">« ' + w.meaning + ' »</div>' +
+            '</div>' +
+            '<div class="word-card__info">' +
+              '<div class="word-card__info-label">Racine</div>' +
+              '<div class="word-card__info-value word-card__info-value--arabic">' + w.root + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="word-card__funfact">' +
+            '💡 <strong>' + (w.funFactTitle || 'Astuce :') + '</strong> ' + w.funFact +
+          '</div>' +
+          '<div class="word-card__related">' +
+            '🧩 ' + (w.relatedText || 'Mots de la même famille :') + ' ' + w.related +
+          '</div>' +
+        '</div>';
+      });
+      wordsContainer.innerHTML = wordsHTML;
+
+      // === Render Roots Summary ===
+      const rootsSummary = document.getElementById('roots-summary');
+      const uniqueRoots = [];
+      lesson.words.forEach(function(w) {
+        if (!uniqueRoots.find(r => r.root === w.root)) {
+          uniqueRoots.push({ root: w.root, meaning: w.rootMeaning, color: w.rootColor || 1 });
+        }
+      });
+      let rootsHTML = '<div style="background:linear-gradient(135deg,#F0EEFF,#FFF8E1); border-radius:16px; padding:24px; margin-top:24px; box-shadow:var(--shadow-sm);">' +
+        '<h3 style="font-size:1.1rem; font-weight:800; margin-bottom:16px; color:var(--text-dark);">🌈 Récapitulatif des racines</h3>' +
+        '<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px;">';
+      uniqueRoots.forEach(function(r) {
+        rootsHTML += '<div style="display:flex; align-items:center; gap:8px; font-size:0.9rem;">' +
+          '<span style="width:12px;height:12px;border-radius:50%;background:var(--root-' + r.color + ');flex-shrink:0;"></span>' +
+          '<strong>' + r.root + '</strong> — ' + r.meaning +
+        '</div>';
+      });
+      rootsHTML += '</div></div>';
+      rootsSummary.innerHTML = rootsHTML;
+
+      // === Render Quiz ===
+      const quizContainer = document.getElementById('quiz-container');
+      let quizHTML = '';
+      lesson.quiz.forEach(function(q, qi) {
+        quizHTML += '<div class="quiz-question" data-correct="' + q.correct + '">' +
+          '<div class="quiz-question__number">Question ' + (qi + 1) + ' sur ' + lesson.quiz.length + '</div>' +
+          '<div class="quiz-question__text">' + q.question + '</div>' +
+          '<div class="quiz-options">';
+        q.options.forEach(function(opt, oi) {
+          quizHTML += '<button class="quiz-option" data-index="' + oi + '">' + opt + '</button>';
+        });
+        quizHTML += '</div></div>';
+      });
+      quizContainer.innerHTML = quizHTML;
+
+      // Completion text
+      document.getElementById('completion-text').textContent = lesson.completionText || 
+        'Tu as terminé ce mini-cours ! Tu connais maintenant ' + lesson.words.length + ' mots du Coran. Continue comme ça !';
+      document.getElementById('completion-words').textContent = lesson.words.length;
+      document.getElementById('completion-roots').textContent = uniqueRoots.length;
+      document.getElementById('completion-xp').textContent = '+' + (lesson.xp || 15);
+
+      // Store lesson ID for quiz
+      window._currentLessonId = lesson.id;
+      window._currentLessonXP = lesson.xp || 15;
+    }
+
+    // === Progress & Streak ===
+    function loadProgress() {
+      const key = 'mc_progress';
+      let data = JSON.parse(localStorage.getItem(key) || '{}');
+      if (!data.streak) data.streak = 0;
+      if (!data.completed) data.completed = [];
+      if (!data.xp) data.xp = 0;
+      document.getElementById('streak-count').textContent = data.streak;
+    }
+
+    // === Progress Bar Scroll ===
+    function initProgressBar() {
+      const el = document.getElementById('main-progress');
+      window.addEventListener('scroll', function() {
+        const scrollPct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        el.style.width = Math.min(scrollPct * 100, 100) + '%';
+      });
+    }
+
+    // === Scroll Reveal Animation ===
+    function initScrollReveal() {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    }
+
+    // === Quiz Logic ===
+    let quizScore = 0;
+    let quizAnswered = 0;
+    let totalQuestions = 0;
+
+    function initQuiz() {
+      totalQuestions = document.querySelectorAll('.quiz-question').length;
+      quizScore = 0;
+      quizAnswered = 0;
+
+      document.querySelectorAll('.quiz-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const question = this.closest('.quiz-question');
+          if (question.classList.contains('quiz-question--answered')) return;
+          
+          question.classList.add('quiz-question--answered');
+          const correctIndex = parseInt(question.dataset.correct);
+          const selectedIndex = parseInt(this.dataset.index);
+          const allOptions = question.querySelectorAll('.quiz-option');
+          
+          allOptions.forEach(function(opt) { opt.classList.add('quiz-option--disabled'); });
+          
+          if (selectedIndex === correctIndex) {
+            this.classList.add('quiz-option--correct');
+            quizScore++;
+          } else {
+            this.classList.add('quiz-option--wrong');
+            allOptions[correctIndex].classList.add('quiz-option--correct');
+          }
+          
+          quizAnswered++;
+          
+          if (quizAnswered === totalQuestions) {
+            setTimeout(showQuizResult, 800);
+          }
+        });
+      });
+    }
+
+    function showQuizResult() {
+      const result = document.getElementById('quiz-result');
+      const score = document.getElementById('quiz-score');
+      const message = document.getElementById('quiz-message');
+      const stars = document.getElementById('quiz-stars');
+      const completion = document.getElementById('completion');
+      
+      result.classList.add('quiz-result--show');
+      
+      let starsCount = 0;
+      if (quizScore === totalQuestions) {
+        score.textContent = quizScore + '/' + totalQuestions;
+        score.className = 'quiz-result__score quiz-result__score--perfect';
+        message.textContent = 'Parfait ! Tu maîtrises toutes les racines ! 🎉';
+        starsCount = 3;
+        launchConfetti();
+      } else if (quizScore >= Math.ceil(totalQuestions / 2)) {
+        score.textContent = quizScore + '/' + totalQuestions;
+        score.className = 'quiz-result__score quiz-result__score--good';
+        message.textContent = 'Bien joué ! Relis les mots que tu as ratés pour t\'améliorer.';
+        starsCount = 2;
+      } else {
+        score.textContent = quizScore + '/' + totalQuestions;
+        score.className = 'quiz-result__score quiz-result__score--retry';
+        message.textContent = 'Pas grave ! Relis la leçon et réessaie. Tu vas y arriver !';
+        starsCount = 1;
+      }
+      
+      let starsHTML = '';
+      for (let i = 0; i < 3; i++) {
+        starsHTML += i < starsCount ? '⭐' : '<span class="stars--empty">☆</span>';
+      }
+      stars.innerHTML = starsHTML;
+      
+      if (quizScore >= Math.ceil(totalQuestions / 2)) {
+        completion.style.display = 'block';
+        completion.classList.add('animate-fade-in');
+        
+        const key = 'mc_progress';
+        let data = JSON.parse(localStorage.getItem(key) || '{}');
+        if (!data.completed) data.completed = [];
+        const lessonId = window._currentLessonId;
+        if (!data.completed.includes(lessonId)) {
+          data.completed.push(lessonId);
+          data.xp = (data.xp || 0) + (window._currentLessonXP || 15);
+          // Incrémenter le streak
+          const today = new Date().toDateString();
+          if (data.lastCompletedDate !== today) {
+            data.streak = (data.streak || 0) + 1;
+            data.lastCompletedDate = today;
+          }
+        }
+        localStorage.setItem(key, JSON.stringify(data));
+        document.getElementById('streak-count').textContent = data.streak || 0;
+      }
+    }
+
+    function resetQuiz() {
+      quizScore = 0;
+      quizAnswered = 0;
+      
+      document.querySelectorAll('.quiz-question').forEach(function(q) {
+        q.classList.remove('quiz-question--answered');
+      });
+      
+      document.querySelectorAll('.quiz-option').forEach(function(opt) {
+        opt.classList.remove('quiz-option--correct', 'quiz-option--wrong', 'quiz-option--disabled', 'quiz-option--selected');
+      });
+      
+      document.getElementById('quiz-result').classList.remove('quiz-result--show');
+      document.getElementById('completion').style.display = 'none';
+      
+      document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // === Init ===
+    document.addEventListener('DOMContentLoaded', function() {
+      const lessonId = getLessonId();
+      const lesson = findLesson(lessonId);
+      
+      loadProgress();
+      
+      if (lesson) {
+        renderLesson(lesson);
+        initProgressBar();
+        
+        // Delay to allow DOM to settle
+        setTimeout(function() {
+          initScrollReveal();
+          initQuiz();
+        }, 100);
+      } else {
+        document.getElementById('lesson-title').textContent = 'Leçon introuvable';
+        document.getElementById('lesson-subtitle').textContent = 'Cette leçon n\'existe pas encore.';
+      }
+    });
+    // === CONFETTI ===
+    function launchConfetti() {
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#FF6B6B','#4ECDC4','#7C5CFC','#FFD93D','#51CF66','#FF922B','#4DABF7','#FFA5A5'];
+      const pieces = [];
+
+      for (let i = 0; i < 120; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          w: Math.random() * 10 + 5,
+          h: Math.random() * 6 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vy: Math.random() * 3 + 2,
+          vx: (Math.random() - 0.5) * 2,
+          rot: Math.random() * 360,
+          rv: (Math.random() - 0.5) * 8,
+          opacity: 1
+        });
+      }
+
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        pieces.forEach(function(p) {
+          if (p.opacity <= 0) return;
+          alive = true;
+          p.y += p.vy;
+          p.x += p.vx;
+          p.rot += p.rv;
+          p.vy += 0.05;
+          if (p.y > canvas.height) p.opacity -= 0.02;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frame++;
+        if (alive && frame < 300) {
+          requestAnimationFrame(animate);
+        } else {
+          document.body.removeChild(canvas);
+        }
+      }
+      animate();
+    }
+  </script>
+
+</body>
+</html>
