@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/26488751/README.md)
+[README.md](https://github.com/user-attachments/files/26489746/README.md)
 # 🕌 Marathon Coran
 
 > Apprendre le Coran par les racines arabes — pour les enfants de 7 à 12 ans
