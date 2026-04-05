@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/26488094/README.md)
+[README.md](https://github.com/user-attachments/files/26488751/README.md)
 # 🕌 Marathon Coran
 
 > Apprendre le Coran par les racines arabes — pour les enfants de 7 à 12 ans
@@ -31,6 +31,28 @@ Le premier palier couvre les **29 sourates les plus courtes du Coran** :
 - **430 racines** arabes distinctes
 - **344 questions** de quiz
 
+## 📚 Palier 2 — Sourates du Cœur
+
+Le deuxième palier plonge dans les sourates profondes qui parlent du cœur, de la création et de l'Au-delà :
+
+| Sourate | Nom | Versets |
+|---------|-----|---------|
+| 67 | Al-Mulk (La Souveraineté) | 30 |
+| 68 | Al-Qalam (La Plume) | 52 |
+| 69 | Al-Haqqah (L'Inéluctable) | 52 |
+| 70 | Al-Ma'arij (Les Degrés) | 44 |
+| 71 | Nuh (Noé) | 28 |
+| 72 | Al-Jinn (Les Djinns) | 28 |
+| 73 | Al-Muzzammil (L'Enveloppé) | 20 |
+| 74 | Al-Muddaththir (Le Revêtu d'un Manteau) | 56 |
+| 75 | Al-Qiyamah (La Résurrection) | 40 |
+| 76 | Al-Insan (L'Homme) | 31 |
+| 77 | Al-Mursalat (Les Envoyés) | 50 |
+
+- **53 mini-cours** au total
+- **376 mots** analysés avec leurs racines
+- **159 questions** de quiz
+
 ## 🎨 Conçu pour les enfants
 
 Le design est spécialement adapté aux enfants de 7 à 12 ans :
@@ -51,10 +73,14 @@ marathon-coran-site/
 ├── style.css               # Design system enfant-friendly
 ├── script.js               # Interactions de l'accueil
 ├── README.md               # Ce fichier
-└── palier1/
-    ├── index.html          # Liste des 88 leçons
+├── palier1/
+│   ├── index.html          # Liste des 88 leçons
+│   ├── lesson.html         # Page de cours (verset + mots + quiz)
+│   └── lessons-data.js     # Données des 88 leçons
+└── palier2/
+    ├── index.html          # Liste des 53 leçons
     ├── lesson.html         # Page de cours (verset + mots + quiz)
-    └── lessons-data.js     # Données des 88 leçons
+    └── lessons-data.js     # Données des 53 leçons
 ```
 
 ## 🚀 Installation locale
@@ -102,7 +128,7 @@ Aucune dépendance requise — c'est du HTML/CSS/JS pur.
 | Palier | Contenu | Statut |
 |--------|---------|--------|
 | ✅ Palier 1 | Les Petites Sourates (1, 78-114) | Terminé |
-| 🔜 Palier 2 | Sourates du Cœur (Rahman, Yasin, Mulk…) | À venir |
+| ✅ Palier 2 | Sourates du Cœur (67-77) | Terminé |
 | 🔜 Palier 3 | Fondamentales (Kahf, Maryam, Yusuf…) | À venir |
 | 🔜 Palier 4 | Les Grandes Sourates (Baqarah, Imran…) | À venir |
 
