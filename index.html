@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marathon Coran — Apprends les racines arabes du Coran !</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body>
+
+  <!-- ====== TOP NAV ====== -->
+  <nav class="top-nav">
+    <div class="container container--wide">
+      <a href="index.html" class="top-nav__logo">
+        <span>🕌</span> Marathon Coran
+      </a>
+      <div class="top-nav__breadcrumb">
+        <span>Accueil</span>
+      </div>
+      <div class="top-nav__streak">🔥 <span id="streak-count">0</span></div>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero__emoji">📖</div>
+    <h1 class="hero__title">Marathon Coran</h1>
+    <p class="hero__subtitle">Découvre les racines arabes du Coran grâce à des leçons ludiques ! Chaque leçon t'apprend de nouveaux mots, leurs racines et des faits amusants. 🌟</p>
+  </section>
+
+  <!-- ====== STATS ====== -->
+  <div style="display:flex; justify-content:center; gap:16px; padding:0 20px 32px; max-width:800px; margin:0 auto; flex-wrap:wrap;">
+    <div style="background:var(--bg-card); border-radius:var(--radius-md); padding:16px 24px; box-shadow:var(--shadow-sm); text-align:center;">
+      <div style="font-size:1.5rem; font-weight:800; color:var(--mc-purple);">5</div>
+      <div style="font-size:0.8rem; color:var(--text-light); font-weight:600;">Paliers</div>
+    </div>
+    <div style="background:var(--bg-card); border-radius:var(--radius-md); padding:16px 24px; box-shadow:var(--shadow-sm); text-align:center;">
+      <div style="font-size:1.5rem; font-weight:800; color:var(--mc-teal);">354</div>
+      <div style="font-size:0.8rem; color:var(--text-light); font-weight:600;">Leçons</div>
+    </div>
+    <div style="background:var(--bg-card); border-radius:var(--radius-md); padding:16px 24px; box-shadow:var(--shadow-sm); text-align:center;">
+      <div style="font-size:1.5rem; font-weight:800; color:var(--mc-coral);">49</div>
+      <div style="font-size:0.8rem; color:var(--text-light); font-weight:600;">Sourates</div>
+    </div>
+    <div style="background:var(--bg-card); border-radius:var(--radius-md); padding:16px 24px; box-shadow:var(--shadow-sm); text-align:center;">
+      <div style="font-size:1.5rem; font-weight:800; color:var(--mc-gold-dark);">1000+</div>
+      <div style="font-size:0.8rem; color:var(--text-light); font-weight:600;">Racines arabes</div>
+    </div>
+  </div>
+
+  <!-- ====== PALIER CARDS ====== -->
+  <section style="padding:0 20px 48px;">
+    <h2 style="text-align:center; font-size:1.5rem; font-weight:800; color:var(--text-dark); margin-bottom:24px;">🎯 Choisis ton Palier</h2>
+    <div class="palier-grid">
+
+      <a href="palier1/index.html" class="palier-card">
+        <div class="palier-card__number">⭐ Palier 1</div>
+        <div style="font-size:2.5rem; margin:8px 0;">🌱</div>
+        <div class="palier-card__title">Débutant</div>
+        <div class="palier-card__desc">Les petites sourates — de Al-Fatiha à An-Nas. Les racines les plus fréquentes du Coran.</div>
+        <div class="palier-card__stats">
+          <span class="palier-card__stat">📚 88 leçons</span>
+          <span class="palier-card__stat">📖 Sourates 1, 78-114</span>
+        </div>
+        <div class="palier-card__link" style="background:var(--mc-purple); color:white;">Commencer →</div>
+      </a>
+
+      <a href="palier2/index.html" class="palier-card">
+        <div class="palier-card__number">⭐ Palier 2</div>
+        <div style="font-size:2.5rem; margin:8px 0;">🌿</div>
+        <div class="palier-card__title">Intermédiaire</div>
+        <div class="palier-card__desc">Sourates moyennes — de Al-Mulk à Al-Mursalat. Des racines plus riches et variées.</div>
+        <div class="palier-card__stats">
+          <span class="palier-card__stat">📚 53 leçons</span>
+          <span class="palier-card__stat">📖 Sourates 67-77</span>
+        </div>
+        <div class="palier-card__link" style="background:var(--mc-teal); color:white;">Commencer →</div>
+      </a>
+
+      <a href="palier3/index.html" class="palier-card">
+        <div class="palier-card__number">⭐ Palier 3</div>
+        <div style="font-size:2.5rem; margin:8px 0;">🌳</div>
+        <div class="palier-card__title">Avancé</div>
+        <div class="palier-card__desc">Sourates longues — de Qaf à At-Tahrim. Des racines de savoir et de sagesse.</div>
+        <div class="palier-card__stats">
+          <span class="palier-card__stat">📚 64 leçons</span>
+          <span class="palier-card__stat">📖 Sourates 50-66</span>
+        </div>
+        <div class="palier-card__link" style="background:var(--mc-coral); color:white;">Commencer →</div>
+      </a>
+
+      <a href="palier4/index.html" class="palier-card">
+        <div class="palier-card__number">⭐ Palier 4</div>
+        <div style="font-size:2.5rem; margin:8px 0;">⭐</div>
+        <div class="palier-card__title">Expert</div>
+        <div class="palier-card__desc">Sourates Ya-Sin à Al-Hujurat. Racines avancées et histoires des prophètes.</div>
+        <div class="palier-card__stats">
+          <span class="palier-card__stat">📚 83 leçons</span>
+          <span class="palier-card__stat">📖 Sourates 36-49</span>
+        </div>
+        <div class="palier-card__link" style="background:var(--mc-gold-dark); color:white;">Commencer →</div>
+      </a>
+
+      <a href="palier5/index.html" class="palier-card">
+        <div class="palier-card__number">⭐ Palier 5</div>
+        <div style="font-size:2.5rem; margin:8px 0;">🏆</div>
+        <div class="palier-card__title">Maître</div>
+        <div class="palier-card__desc">Sourates Al-Furqan à Fatir. Racines complexes et concepts profonds du Coran.</div>
+        <div class="palier-card__stats">
+          <span class="palier-card__stat">📚 66 leçons</span>
+          <span class="palier-card__stat">📖 Sourates 25-35</span>
+        </div>
+        <div class="palier-card__link" style="background:var(--mc-purple-dark); color:white;">Commencer →</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <div class="footer">
+    <p>📖 Projet éducatif libre — Marathon Coran © 2025</p>
+    <p style="margin-top:8px;">Conçu avec ❤️ pour les enfants de 7 à 12 ans</p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Load streak from localStorage
+    (function() {
+      var data = JSON.parse(localStorage.getItem('mc_progress') || '{}');
+      document.getElementById('streak-count').textContent = data.streak || 0;
+    })();
+  </script>
+</body>
+</html>
